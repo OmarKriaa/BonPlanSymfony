@@ -1,0 +1,3 @@
+Event_Dashbord:
+    path:     /table
+    defaults: { _controller: BonPlanBundle:Evenement:afficherDash }

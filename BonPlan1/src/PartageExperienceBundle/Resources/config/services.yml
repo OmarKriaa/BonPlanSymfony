@@ -1,0 +1,4 @@
+services:
+#    partage_experience.example:
+#        class: PartageExperienceBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

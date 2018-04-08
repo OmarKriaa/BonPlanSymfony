@@ -1,0 +1,130 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+
+<div class="loading">
+    <div class="ball"></div>
+    <div class="ball1"></div>
+</div>
+<!--- //loading animation -->
+
+<!--header-->
+
+
+<!--main-->
+<main class="main">
+    <div class="wrap">
+        <!--breadcrumbs-->
+        <nav class="breadcrumbs">
+            <!--crumbs-->
+            <ul>
+                <li><a href='{{ path ('bon_plan_homepage') }}' title="Home">Home</a></li>
+                <li>Get inspired</li>
+            </ul>
+            <!--//crumbs-->
+        </nav>
+        <!--//breadcrumbs-->
+
+        <div class="row">
+            <!--three-fourth content-->
+            <div class="three-fourth">
+                <header class="s-title">
+                    <h2>What do you like?</h2>
+                </header>
+                <a href=""></a>
+                <!--get inspired list-->
+                <ul class="get_inspired">
+                    <!--item-->
+                    <li>
+                        <a  href="{{ path('Event_Type',{'type':'Sortie'}) }}">
+                            <figure>
+                                <img width="450" height="450" src="{{ asset('images/uploads/get_inspired1.jpg')}}" alt="" />
+                                <figcaption>Sortie</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <!--//item-->
+
+                    <!--item-->
+                    <li>
+                        <a href="{{ path('Event_Type',{'type':'Rondonné'}) }}">
+                            <figure>
+                                <img width="450" height="450" src="{{ asset('images/uploads/get_inspired2.jpg')}}" alt="" />
+                                <figcaption>Rondonné</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <!--//item-->
+
+                    <!--item-->
+                    <li>
+                        <a  href="{{ path('Event_Type',{'type':'Loisir'}) }}">
+                            <figure>
+                                <img width="450" height="450" src="{{ asset('images/uploads/get_inspired3.jpg')}}" alt="" />
+                                <figcaption>Loisir</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <!--//item-->
+
+                    <!--item-->
+                    <li>
+                        <a href="{{ path('Event_Type',{'type':'Sport'}) }}">
+                            <figure>
+                                <img  width="450" height="450" src="{{ asset('images/uploads/get_inspired4.jpg')}}" alt="" />
+                                <figcaption>Sport</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <!--//item-->
+
+                    <!--item-->
+                    <li>
+                        <a href="{{ path('Event_Type',{'type':'Repas'}) }}">
+                            <figure>
+                                <img width="450" height="450" src="{{ asset('images/uploads/get_inspired5.jpg')}}" alt="" />
+                                <figcaption>Repas</figcaption>
+                            </figure>
+                        </a>
+                    </li>
+
+
+                    <!--item-->
+
+                </ul>
+
+
+            </div>
+            <!--three-fourth content-->
+
+            <!--sidebar-->
+            <aside class="one-fourth right-sidebar">
+
+                <!--//Deal of the day-->
+
+                <!--Need Help Booking?-->
+                <article class="widget">
+                    <h4>Need Help Events?</h4>
+                    <p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
+                    <p class="number">1- 555 - 555 - 555</p>
+                </article>
+                <!--//Need Help Booking?-->
+
+                <!--Why Book with us?-->
+                <article class="widget">
+                    <h4>Why Book with us?</h4>
+                    <h5>Low rates</h5>
+                    <p>Get the best rates, or get a refund.No booking fees. Save money!</p>
+
+                    <h5>We’re Always Here</h5>
+                    <p>Call or email us, anytimeGet 24-hour support before, during, and after your trip</p>
+                </article>
+                <!--//Why Book with us?-->
+            </aside>
+            <!--//sidebar-->
+        </div>
+        <!--//main content-->
+    </div>
+</main>
+    <!--//main-->
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends ('layout.html.twig') %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Report</title>
+    <style>
+        label.heading {
+            font-weight: 600;
+        }
+        .payment-form {
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            border: 1px #333 solid;
+        }
+    </style>
+</head>
+<body style="text-align: center; margin-top: 100px;">
+<div class="three-fourth">
+<form class="static-content booking">
+    <div class="f-item one">
+    <label for="ID" class="heading">Transaction ID</label><br>
+    <input type="text" disabled="disabled" name="ID" id="ID" value="{{ result.transaction.id}}"><br><br>
+    </div>
+    <div class="f-item one">
+    <label for="firstName" class="heading">First Name</label><br>
+    <input type="text" disabled="disabled" name="firstName" id="firstName" value="{{ firstName }}"><br><br>
+    </div>
+
+    <div class="f-item one">
+    <label for="lastName" class="heading">Last Name</label><br>
+    <input type="text" disabled="disabled" name="lastName" id="lastName" value="{{ lastName }}"><br><br>
+    </div>
+    <div class="f-item one">
+    <label for="amount" class="heading">Amount (USD)</label><br>
+    <input type="text" disabled="disabled" name="amount" id="amount" value="{{ result.transaction.amount ~ result.transaction.currencyIsoCode  }}"><br><br>
+    </div>
+    <div class="f-item one">
+    <label for="status" class="heading">Status</label><br>
+    <input type="text" disabled="disabled" name="status" id="status" value="Successful"><br><br>
+    </div>
+    <br><br>
+</form>
+</div>
+
+</body>
+{% endblock %}

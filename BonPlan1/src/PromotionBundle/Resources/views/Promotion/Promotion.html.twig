@@ -1,0 +1,74 @@
+{% extends'layout.html.twig' %}
+{% block body %}
+    {% if is_granted('ROLE_BON_PLANEUR') %}
+
+        <div class="row">
+            <!--sidebar-->
+            <aside class="one-fourth left-sidebar">
+
+                <!--Need Help Booking?-->
+                <article class="widget">
+                    <h4>Need Help Booking?</h4>
+                    <p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
+                    <p class="number">1- 555 - 555 - 555</p>
+                </article>
+                <!--//Need Help Booking?-->
+
+                <!--Why Book with us?-->
+                <article class="widget">
+                    <h4>Why Book with us?</h4>
+                    <h5>Low rates</h5>
+                    <p>Get the best rates, or get a refund.No booking fees. Save money!</p>
+                    <h5>Largest Selection</h5>
+                    <p>140,000+ hotels worldwide130+ airlinesOver 3 million guest reviews</p>
+                    <h5>We’re Always Here</h5>
+                    <p>Call or email us, anytimeGet 24-hour support before, during, and after your trip</p>
+                </article>
+                <!--//Why Book with us?-->
+
+                <!--Deal of the day-->
+                <article class="widget">
+                    <h4>Deal of the day</h4>
+                    <div class="deal-of-the-day">
+                        <a href="hotel.html">
+                            <figure><img src="images/uploads/hotel3.jpg" alt=""  /></figure>
+                            <h3>Plaza Resort Hotel &amp; SPA
+                                <span class="stars">
+										<i class="material-icons">&#xE838;</i>
+										<i class="material-icons">&#xE838;</i>
+										<i class="material-icons">&#xE838;</i>
+										<i class="material-icons">&#xE838;</i>
+									</span>
+                            </h3>
+                            <p>From <span class="price">$ 100 <small>/ per night</small></span></p>
+                            <span class="rating"> 8 /10</span>
+                        </a>
+                    </div>
+                </article>
+                <!--//Deal of the day-->
+            </aside>
+            <!--//sidebar-->
+
+            <!--three-fourth content-->
+            <div class="three-fourth">
+                <!--post-->
+                <article class="static-content post">
+                    <aside class="one-fourth right-sidebar lower">
+                        <!--contact form-->
+                        <article class="widget">
+
+                           {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            {{ form_end(form) }}
+
+
+                        </article>
+                    </aside>
+                </article>
+            </div>
+            <!--//main content-->
+        </div>
+
+    {% endif %}
+
+        {% endblock %}

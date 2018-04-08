@@ -1,0 +1,56 @@
+{% extends "BonPlanBundle::DashBoard.html.twig" %}
+
+{% block body %}
+
+
+    <div class="row">
+
+        <div class="col-lg-9 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-flag-o red"></i><strong>Liste des réservations</strong></h2>
+
+                </div>
+                <h1> chercher une réservation</h1>
+
+                {{ form(Form) }}
+                <div class="panel-body">
+                    <table class="table bootstrap-datatable countries">
+                        <thead>
+                        <tr>
+
+                            <th>date d'entree</th>
+                            <th>date de sortie</th>
+                            <th>nombre de chambre</th>
+                            <th>nombre de nuits</th>
+                            <th>type de la réservation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+    {% for reservation in re %}
+                        <tr>
+                            <td>{{ reservation.dateentree|date('d-m-Y') }}</td>
+                            <td>{{ reservation.datesortie|date('d-m-Y') }}</td>
+                            <td>{{ reservation.nbrchambre }}</td>
+                            <td>{{ reservation.nbrnuit }}</td>
+                            <td>{{ reservation.type }}</td>
+                        </tr>
+
+                        </tbody>
+                        {% endfor %}
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+{% endblock %}

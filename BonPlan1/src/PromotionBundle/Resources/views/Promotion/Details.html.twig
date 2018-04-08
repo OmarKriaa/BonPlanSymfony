@@ -1,0 +1,125 @@
+{% extends 'Layout.html.twig' %}
+{% block body  %}
+
+    <div class="row">
+        <!--hotel three-fourth content-->
+        <section class="three-fourth">
+            <!--gallery-->
+            <div class="gallery">
+                <ul id="image-gallery" class="cS-hidden">
+                    <li data-thumb="images/uploads/hotel4.jpg">
+                        <img src="images/uploads/hotel4.jpg" alt="" />
+                    </li>
+                    <li data-thumb="images/uploads/hotel1.jpg">
+                        <img src="images/uploads/hotel1.jpg" alt="" />
+                    </li>
+                    <li data-thumb="images/uploads/hotel2.jpg">
+                        <img src="images/uploads/hotel2.jpg" alt="" />
+                    </li>
+                    <li data-thumb="images/uploads/hotel5.jpg">
+                        <img src="images/uploads/hotel5.jpg" alt="" />
+                    </li>
+                    <li data-thumb="images/uploads/hotel3.jpg">
+                        <img src="images/uploads/hotel3.jpg" alt="" />
+                    </li>
+                    <li data-thumb="images/uploads/hotel6.jpg">
+                        <img src="images/uploads/hotel6.jpg" alt="" />
+                    </li>
+                </ul>
+            </div>
+            <!--//gallery-->
+            <!--inner navigation-->
+            <nav class="inner-nav">
+                <ul>
+                    <li class="availability"><a href="#availability" title="Availability">Availability</a></li>
+                    <li class="description"><a href="#description" title="Description">Description</a></li>
+                    <li class="location"><a href="#location" title="Location">Location</a></li>
+
+                </ul>
+            </nav>
+            <!--//inner navigation-->
+{% for p in Promo %}
+            <!--availability-->
+            <section id="availability" class="tab-content">
+                <article>
+                    <h2>Availability</h2>
+                    <div class="text-wrap">
+                        <a href={{ path('Ajout') }} class="gradient-button right" title="Change dates">Votre Avis</a>
+                        <p>Available rooms from <span class="date">Thurs 29 Nov 2016</span> to <span class="date">Fri 30 Nov 2016</span>.</p>
+                        <p>{{ p.prix }}Dt</p>
+                        {% set PrixF = p.prix - ((p.prix * p.ValeurReduction.valeur)/100) %}
+                        Le Prix Finale est {{ PrixF }} Dt
+
+
+                    </div>
+
+
+                        <!--//room-->
+                    </ul>
+                </article>
+            </section>
+            <!--//availability-->
+
+            <!--description-->
+            <section id="description" class="tab-content">
+                <article>
+                    <h2>General</h2>
+                    <div class="text-wrap">
+                        <p>{{ p.description }}</p>
+                        {{ barcode({code: 'votre code est : '~p.QRCode ~' valable jusqu qu au '~p.datefin|date , type: 'qrcode', format: 'svg', width: 10, height: 10, color: 'black'}) }}
+                    </div>
+
+
+                </article>
+            </section>
+            <!--//description-->
+
+            <!--facilities-->
+
+
+
+            <!--location-->
+            <section id="location" class="tab-content">
+                <article>
+                    <!--map-->
+
+                    <div class="gmap" id="map_canvas"></div>
+                    <!--//map-->
+                    <style type="text/css">html,#map_canvas{ height: 100%; margin: 0; padding: 0;}</style>
+                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4tYqzISbqcSlhFDUVNL5b5H6G2WGl57w">
+                    </script>
+
+                    <script type="text/javascript">
+                        function initialize()
+                        {
+                         var mapOptions = {
+                             center: {lat: -34.397, lng: 150.644},
+                             zoom: 8
+                         };
+                         var map = new google.maps.Map(document.getElementById('map-canvas'),
+                                   mapOptions);
+                         var myLating = new google.maps.LatLng(-25.363882, 131.044922);
+                         var mapOptions = {
+                             zoom: 4,
+                             center: myLating
+                         }
+                         var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+                        }
+                        google.maps.event.addDomLoadEvent(window, 'load', initialize);
+                    </script>
+
+                </article>
+            </section>
+
+            <!--//location-->
+
+            <!--reviews-->
+
+</section>
+    </div>
+
+        <!--//hotel content-->
+{% endfor %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+reservation:
+    resource: "@ReservationBundle/Resources/config/routing.yml"
+    prefix:   /reservation
+
+promotion:
+    resource: "@PromotionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+partage_experience:
+    resource: "@PartageExperienceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bon_plan:
+    resource: "@BonPlanBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+Event_Dashbord:
+    path:     /layout/tableEvent
+    defaults: { _controller: BonPlanBundle:Evenement:afficherDash }
+
+Event_valide:
+    path:     /layout/valide
+    defaults: { _controller: BonPlanBundle:Evenement:valide }
+    methods:  [GET]
+
+Event_supprimer:
+    path:     /layout/supprimer/{idevent}
+    defaults: { _controller: BonPlanBundle:Evenement:deleteadmin }
+    methods:  [GET]
+
+
+Register:
+    path:     /register
+    defaults: { _controller: UserBundle:Default:register }
+
+Login:
+    path:     /login
+    defaults: { _controller: UserBundle:Default:login }
+
+Logout:
+    path:     /Logout
+    defaults: { _controller: UserBundle:Default:Logout }
+
+
+ShowUser:
+    path:     /profile
+    defaults: { _controller: UserBundle:Default:show }
+
+Edit:
+    path:     /profile/edit
+    defaults: { _controller: UserBundle:Default:edit }
+
+Avis:
+    path:     /Avis
+    defaults: { _controller: PartageExperienceBundle:Avis:AjouterAvis }
+
+Contact:
+    path:     /Contact
+    defaults: { _controller: PartageExperienceBundle:Contact:Contact }
+
+Promotion:
+    path:     /Promotion
+    defaults: { _controller: PromotionBundle:Promotion:AjoutPromotion }
+
+AfficherPromotions:
+    path:     /AfficherPromotions
+    defaults: { _controller: PromotionBundle:Promotion:AfficherPromotions }
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

@@ -1,0 +1,27 @@
+reservation_homepage:
+    path:     /
+    defaults: { _controller: ReservationBundle:Default:index }
+ajout:
+    path:     /ajout
+    defaults: { _controller: ReservationBundle:Default:ajout }
+aff:
+    path:     /aff
+    defaults: { _controller: ReservationBundle:Default:afficherReservation }
+supprimerReservation:
+    path:     /supp/{id}
+    defaults: { _controller: ReservationBundle:Default:supprimerReservation }
+modifier:
+    path:     /modifier/{id}
+    defaults: { _controller: ReservationBundle:Default:ModifierReservation }
+payment:
+    path:     /payment
+    defaults: { _controller: ReservationBundle:Default:payment }
+payment2:
+    path:     /payment2
+    defaults: { _controller: ReservationBundle:Default:payment2 }
+generate_token:
+    path:     /generateToken
+    defaults: { _controller: ReservationBundle:Default:generateToken }
+ajoutReclamation:
+    path:     /ajoutReclamation
+    defaults: { _controller: ReservationBundle:Reclamation:ajout }

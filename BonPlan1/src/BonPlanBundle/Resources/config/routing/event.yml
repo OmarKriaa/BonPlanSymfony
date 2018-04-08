@@ -1,0 +1,59 @@
+Evenement_all:
+    path:     /All
+    defaults: { _controller: BonPlanBundle:Evenement:afficherAllEvent }
+
+EventAjouter:
+    path:     /ajouter
+    defaults: { _controller: BonPlanBundle:Evenement:ajouter }
+
+EventAfficher:
+    path:     /afficher
+    defaults: { _controller: BonPlanBundle:Evenement:afficher }
+
+EventAfficherDetails:
+    path:     /afficherdetails/{idevent}
+    defaults: { _controller: BonPlanBundle:Evenement:afficherdetails }
+
+Event_Type:
+    path:     /type/{type}
+    defaults: { _controller: BonPlanBundle:Evenement:type }
+    methods:  GET
+
+Event_Pb:
+    path:     /
+    defaults: { _controller: BonPlanBundle:Evenement:index }
+
+Event_edit:
+    path:     /{idevent}/edit
+    defaults: { _controller: BonPlanBundle:Evenement:edit }
+    methods:  [GET, POST]
+
+Event_Supp:
+    path:     /{idevent}/delete
+    defaults: { _controller: BonPlanBundle:Evenement:delete }
+    methods:  [GET]
+
+Event_valide:
+    path:     /valide
+    defaults: { _controller: BonPlanBundle:Evenement:valide }
+    methods:  [GET]
+
+Event_participer:
+    path:     /{idevent}/participer
+    defaults: { _controller: BonPlanBundle:Participerevent:ajouterParticipation }
+
+Event_annuler:
+    path:     /{idevent}/annuler
+    defaults: { _controller: BonPlanBundle:Participerevent:delete }
+
+Event_part:
+    path:     /participer/{idevent}
+    defaults: { _controller: BonPlanBundle:Evenement:participerEvent }
+
+Event_annul:
+    path:     /annuler/{idevent}
+    defaults: { _controller: BonPlanBundle:Evenement:annuler }
+
+rechercheAjax:
+    path:     /recherche
+    defaults: { _controller: BonPlanBundle:Evenement:ajax }

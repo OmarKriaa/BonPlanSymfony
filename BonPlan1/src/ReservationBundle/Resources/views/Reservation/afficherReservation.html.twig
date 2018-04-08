@@ -1,0 +1,91 @@
+{% extends ('layout.html.twig') %}
+{% block body %}
+
+    <!--main-->
+    <div class="main">
+        <div class="wrap">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+                <!--crumbs-->
+                <ul>
+                    <li><a href="#" title="Home">Home</a></li>
+                    <li><a href="#" title="My Account">My Account</a></li>
+                </ul>
+                <!--//crumbs-->
+            </nav>
+            <!--//breadcrumbs-->
+
+            <div class="row">
+                <!--three-fourth content-->
+                <section class="three-fourth">
+
+                    <h1>ma réservation</h1>
+
+                    <!--inner navigation-->
+                    <nav class="inner-nav">
+                        <ul>
+                            <li><a href="#MyBookings" title="My Bookings">Ma réservation</a></li>
+
+                        </ul>
+
+                    </nav>
+                    <!--//inner navigation-->
+
+                    <!--My Bookings-->
+                    <section id="MyBookings" class="tab-content">
+                        <!--booking-->
+                        <article class="bookings">
+                            <h2><a href="#">votre reservation</a></h2>
+                            <div class="b-info">
+                                <table>
+                                    {% for reservation in re %}
+                                    <tr>
+                                        <th>date d'entree</th>
+                                        <td>{{ reservation.dateentree|date('d-m-Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>date de sortie</th>
+                                        <td>{{ reservation.datesortie|date('d-m-Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nombre de chambres</th>
+                                        <td>{{ reservation.nbrchambre }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Type de nuits</th>
+                                        <td>{{ reservation.nbrnuit }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Type de la réservation</th>
+                                        <td>{{ reservation.type }}</td>
+                                    </tr>
+
+
+                                </table>
+                            </div>
+
+                            <div class="actions">
+                                <a href="{{ path('supprimerReservation',{"id":reservation.idReservation}) }}" class="gradient-button">Supprimer votre réservation</a>
+                                <a href="{{ path('modifier',{"id":reservation.idReservation}) }}" class="gradient-button">Modifier votre réservation</a>
+                                <a href="{{ path('payment') }}" class="gradient-button">Passer au payment</a>
+
+
+                            </div>
+                            {% endfor %}
+                        </article>
+
+                    </section>
+
+
+                </section>
+                <!--//sidebar-->
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--//main-->
+
+{% endblock %}

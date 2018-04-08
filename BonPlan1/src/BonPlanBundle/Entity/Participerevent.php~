@@ -1,0 +1,40 @@
+<?php
+
+namespace BonPlanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Participerevent
+ *
+ * @ORM\Table(name="participerevent", indexes={@ORM\Index(name="idEvent", columns={"idEvent"}), @ORM\Index(name="idpersonne", columns={"idpersonne"})})
+ * @ORM\Entity
+ */
+class Participerevent
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idparticipation", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idparticipation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idEvent", type="integer", nullable=true)
+     */
+    private $idevent;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idpersonne", type="integer", nullable=true)
+     */
+    private $idpersonne;
+
+
+}
+

@@ -1,0 +1,44 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+ <div class="row">
+  <!--three-fourth content-->
+  <div class="three-fourth">
+   <div id="booking"  class="static-content booking">
+    <!--post-->
+       {{ form_start(Form) }}
+    <fieldset>
+     <h2><span>01 </span>Faite Nous Part de votre Avis</h2>
+     <div class="row">
+      <div class="f-item one-half">
+       <div class="f-item one-half">
+        <label>Note Service</label>
+        <label for="Note Service">{{ form_widget(Form.note_service_h) }}</label>
+       </div>
+       <div class="f-item one-half">
+        <label>Note Rapport</label>
+        <label for="Note Rapport">{{ form_widget(Form.note_rapport_h) }}</label>
+       </div>
+       <div class="f-item one-half">
+        <label>Note Confort</label>
+        <label for="Note Confort">{{ form_widget(Form.note_confort_h) }}</label>
+       </div>
+       <div class="f-item one-half">
+        <label>Note Personnel</label>
+        <label for="Note Personnel">{{ form_widget(Form.note_personnel_h) }}</label>
+       </div>
+      </div>
+      <div class="f-item full-width">
+       <label>Votre Commentaire</label>
+       <label for="CommentaireAvis" rows="10" cols="10">{{ form_widget(Form.commentaire_avis_h) }}</label>
+      </div>
+
+     </div>
+     <div class="f-item full-width">
+         {{ form_widget(Form.Ajouter,{'attr':{'type':'text','class':'form-control border-top-0 border-left-0 border-right-0 rounded-0 pl-4','placeholder':''}}) }}
+     </div>
+        {{ form_end(Form) }}
+    </fieldset>
+   </div>
+  </div>
+ </div>
+{% endblock %}

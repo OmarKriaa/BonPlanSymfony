@@ -1,0 +1,105 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+    <!--- loading animation -->
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+    <!--main-->
+    <main class="main">
+        <div class="wrap">
+            <div class="row">
+                <div class="full-width">
+                    <!--top destinations-->
+                    <header class="s-title">
+                        <h2>Top destinations around the world</h2>
+                    </header>
+
+                    <div class="destinations">
+                        <div class="row">
+                            <!--column-->
+                            {% for Evenement in pagination %}
+
+                            <div id="content-body">
+
+                                <article class="one-fourth">
+                                    <figure><a href="{{ path('EventAfficherDetails' , {'idevent':Evenement.idevent}) }}" title=""><img src="{{ asset('images/evenement/'~Evenement.image)|imagine_filter('EvenementThumb') }}" alt="{{ Evenement.image }}" /></a></figure>
+
+                                    <div class="details" style="width: 250px; height: 75px;">
+                                        <a href="{{ path('EventAfficherDetails' , {'idevent':Evenement.idevent}) }}" title="View all" class="gradient-button">View all</a>
+                                        <h4>{{ Evenement.titre }}</h4>
+
+                                        <div class="ribbon">
+                                            <div class="half hotel">
+                                                <a href="{{ path('EventAfficherDetails' , {'idevent':Evenement.idevent}) }}" title="View all">
+                                                    <span class="price">&#36; {{ Evenement.prix }}</span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </article>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--//top destinations-->
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+
+    <br><br>
+
+
+    <div class="pagination pagination" align="center">
+        {{ knp_pagination_render(pagination) }}
+
+    </div>
+    <form method="post">
+
+        <center><input placeholder="Titre" type="text" name="d" id="search"  style="width: 250px; height: 30px;"></center>
+
+
+    </form>
+
+    <div id="result">
+
+    </div>
+    <script language="javascript" src="{{ asset('js/jquery.js') }}"></script>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("#search").keyup(function(){
+                $.ajax({
+                    type: "get",
+                    url: "{{ path('rechercheAjax') }}",
+                    data:"d="+$("#search").val(),
+                    success: function(data){
+                        console.log(JSON.parse(data.data));
+                        $("#result").html('<div>'+
+                            '</div>');
+                        var array = JSON.parse(data.data);
+                        array.forEach(function(k) {
+                            $("#res").append("<tr>" +
+                                '<td>'+k.titre+'</td><td>'+'<img width="250" height="250"  src="http://127.0.0.1:8000/images/evenement/'+k.image+'" alt="'+k.image+'">'+'</td></tr>');
+                        })
+                    }
+                });
+            });
+        });
+    </script>
+
+{% endblock %}
+

@@ -1,0 +1,72 @@
+{% extends "BonPlanBundle::DashBoard.html.twig" %}
+
+{% block body %}
+
+    {% set i = 0 %}
+    <div class="panel-body">
+
+        <table class="table bootstrap-datatable countries">
+            <thead>
+            <tr>
+                <th>N °</th>
+                <th><i class="icon_profile"></i> Titre </th>
+                <th><i class="icon_calendar"></i> Date</th>
+                <th><i class="icon_mail_alt"></i> Description</th>
+                <th><i class="icon_pin_alt"></i> Adresse</th>
+                <th><i class="icon_mobile"></i>Image </th>
+                <th><i class="icon_mobile"></i>Type </th>
+                <th><i class="icon_mobile"></i>Prix </th>
+                <th><i class="icon_mobile"></i>Nb  </th>
+                <th><i class="icon_cogs"></i> Action</th>
+            </tr>
+            {% for Evenement in Evenement %}
+                <tr>
+
+                    {% set i = i+1 %}
+                    {% if Evenement.valide == 1 %}
+                    <td class="btn-group">{{ i }}
+
+                        <div class="btn-group">
+                            <i class="icon_close_alt2"></i></label>
+                        </div>
+
+                        {% else %}
+
+                            <div class="btn-group">
+                                <label class="btn btn-danger"></label>
+                            </div>
+
+                        {% endif %}
+                    </td>
+                    <td>{{ Evenement.titre }}</td>
+                    <td>{{ Evenement.date|date("d M, Y") }}</td>
+                    <td>{{ Evenement.description }}</td>
+                    <td>{{ Evenement.lieu}}</td>
+                    <td>
+                        <div>
+                            <img width="50" height="50" src="{{ asset('images/evenement/'~Evenement.image)}}" alt="{{ Evenement.image }}" />
+                        </div>
+                    </td>
+                    <td>{{ Evenement.type }}</td>
+                    <td>{{ Evenement.prix }}</td>
+                    <td>{{ Evenement.nbPlace }}</td>
+                    <td>
+                        <div class="btn-group">
+
+                            <a class="btn btn-success" href="{{ path('Event_valide',{ 'idevent': Evenement.idevent }) }}"><i class="icon_check_alt2"></i></a>
+                            <a class="btn btn-danger" href="{{ path('Event_supprimer', { 'idevent': Evenement.idevent }) }}"><i class="icon_close_alt2"></i></a>
+                        </div>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </thead>
+
+        </table>
+        <br><br>
+
+
+
+    </div>
+
+{% endblock %}

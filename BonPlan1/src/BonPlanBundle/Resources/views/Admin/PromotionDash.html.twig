@@ -1,0 +1,59 @@
+{% extends "BonPlanBundle::DashBoard.html.twig" %}
+
+{% block body %}
+
+    {% set i = 0 %}
+    <div class="panel-body">
+
+        <table class="table bootstrap-datatable countries">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Lieu</th>
+                <th>Image</th>
+                <th>DateFin</th>
+                <th>Prix</th>
+                <th><i class="icon_cogs"></i> Action</th>
+            </tr>
+            {% for Promotion in Promotion %}
+                <tr>
+
+                    {% set i = i+1 %}
+                    {% if Promotion.valide == 1 %}
+                    <td class="btn-group">{{ i }}
+
+                        <div class="btn-group">
+                            <i class="icon_close_alt2"></i></label>
+                        </div>
+
+
+
+
+                        {% endif %}
+                    </td>
+                    <td>{{ Promotion.titre }}</td>
+                    <td>{{ Promotion.description }}</td>
+                    <td>{{ Promotion.lieu }}</td>
+                    <td> <img src="{{ asset('uploads/images/' ~ Promotion.image) }}" width="200" height="200"></td>
+                    <td>{{ Promotion.datefin|date }}</td>
+                    <td>{{ Promotion.prix }}</td>
+                    <td>
+                        <div class="btn-group">
+
+                            <a class="btn btn-success" href="{{ path('Promotion_Valide',{ 'id': Promotion.id }) }}"><i class="icon_check_alt2"></i></a>
+                        </div>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </thead>
+
+        </table>
+        <br><br>
+
+
+
+    </div>
+
+{% endblock %}

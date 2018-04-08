@@ -1,0 +1,121 @@
+{% extends('layout.html.twig') %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block body %}
+<div class="fos_user_user_show">
+
+</div>
+
+<nav class="inner-nav">
+    <ul>
+
+        <li><a href="#MySettings" title="Settings">Settings</a></li>
+    </ul>
+</nav>
+<!--//inner navigation-->
+<!--MySettings-->
+
+<form id="MySettings" class="tab-content" action="{{ path("fos_user_profile_edit") }}" method="post">
+    <article class="mysettings">
+        <h2>Personal details</h2>
+        <table>
+            <tr>
+                <th>First name:</th>
+                <td> {{ user.username }}
+                    <!--edit fields-->
+                    <div class="edit_field" id="field1">
+                        <label for="new_name">Your new name:</label>
+                        <input type="text" id="username" name="_username" value="{{ user.username }}"/>
+
+                        <a href="#">Cancel</a>
+                    </div>
+                    <!--//edit fields-->
+                </td>
+           </tr>
+            <tr>
+                <th>Last name:</th>
+                <td>Livingston
+                    <!--edit fields-->
+                    <div class="edit_field" id="field2">
+                        <label for="new_last_name">Your new name:</label>
+                        <input type="text" id="new_last_name"/>
+                        <input type="submit" value="save" class="gradient-button" id="submit2"/>
+                        <a href="#">Cancel</a>
+                    </div>
+                    <!--//edit fields-->
+                </td>
+            </tr>
+            <tr>
+                <th>E-mail address: </th>
+                <td>{{ user.email }}
+                    <!--edit fields-->
+                    <div class="edit_field" id="field3">
+                        <label for="new_email">Your new email:</label>
+                        <input type="email" id="email" name="_email" value="{{ user.email }}"/>
+                        <a href="#">Cancel</a>
+                    </div>
+                    <!--//edit fields-->
+                </td>
+            </tr>
+            <tr>
+                <th>Password: </th>
+                <td>
+                    <input type="password" value="{{ user.password }}" disabled>
+                    <!--edit fields-->
+                    <div class="edit_field" id="field4">
+                        <label for="new_password">Your new password:</label>
+                        <input type="password" id="password" name="_password" value="{{ user.password }}"/>
+                        <a href="#">Cancel</a>
+                    </div>
+                    <!--//edit fields-->
+                </td>
+            </tr>
+            <tr>
+                <th>Street Address and number:</th>
+                <td>Some street name 55
+                    <!--edit fields-->
+                    <div class="edit_field" id="field5">
+                        <label for="new_address">Your new address:</label>
+                        <input type="text" id="new_address"/>
+                        <input type="submit" value="save" class="gradient-button" id="submit5"/>
+                        <a href="#">Cancel</a>
+                    </div>
+                    <!--//edit fields-->
+                </td>
+            </tr>
+
+
+            <tr>
+                <th>ZIP code:</th>
+                <td>9500 - 100
+                    <!--edit fields-->
+                    <div class="edit_field" id="field7">
+                        <label for="new_zip">Your new ZIP code:</label>
+                        <input type="text" id="new_zip"/>
+                        <input type="submit" value="save" class="gradient-button" id="submit7"/>
+                        <a href="#">Cancel</a>
+                    </div>
+                    <!--//edit fields-->
+                </td>
+            </tr>
+
+            <tr>
+                <th>Roles:</th>
+                <td>Neverland
+                    <!--edit fields-->
+                    <div class="edit_field" id="field8">
+                        <label for="new_country">Your new country:</label>
+                        <input type="text" id="new_country"/>
+                        <input type="submit" value="save" class="gradient-button" id="submit8"/>
+                        <a href="#">Cancel</a>
+                    </div>
+                    <!--//edit fields-->
+                </td>
+
+            </tr>
+        </table>
+        <input type="submit" href="{{ path("Edit")  }}" value="{{ 'profile.edit.submit'|trans }}" />
+    </article>
+</form>
+</section>
+<!--//MySettings-->
+{% endblock %}

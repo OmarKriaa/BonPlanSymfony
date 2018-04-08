@@ -1,0 +1,71 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+    <div class="row">
+        <!--three-fourth content-->
+        <div class="three-fourth">
+            <h1>Contact us</h1>
+            <!--map-->
+            <div class="map-wrap">
+                <div class="gmap" id="map_canvas"></div>
+                <style type="text/css">html,#map_canvas{ height: 100%; margin: 0; padding: 0;}</style>
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4tYqzISbqcSlhFDUVNL5b5H6G2WGl57w">
+                </script>
+
+                <script type="text/javascript">
+                    function initialize()
+                    {
+                        var mapOptions = {
+                            center: {lat: -34.397, lng: 150.644},
+                            zoom: 8
+                        };
+                        var map = new google.maps.Map(document.getElementById('map-canvas'),
+                            mapOptions);
+                        var myLating = new google.maps.LatLng(-25.363882, 131.044922);
+                        var mapOptions = {
+                            zoom: 4,
+                            center: myLating
+                        }
+                        var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+                    }
+                    google.maps.event.addDomLoadEvent(window, 'load', initialize);
+                </script>
+
+            </div>
+            <!--//map-->
+        </div>
+        <aside class="one-fourth right-sidebar lower">
+        <!--contact form-->
+        <article class="widget">
+            <h4>Send us a message</h4>
+
+            <form method="post" action="{{ path('Contact') }}" >
+                        {{ form_errors(form) }}
+                    {{ form_start(form) }}
+                <fieldset>
+                    <div id="message"></div>
+                    <div class="row">
+                        <div class="f-item full-width">
+                            <label for="name">Your name</label>
+                            {{ form_widget(form.name) }}
+                        </div>
+                        <div class="f-item full-width">
+                            <label for="email">Your e-mail</label>
+                            {{ form_widget(form.email) }}
+                        </div>
+                        <div class="f-item full-width">
+                            <label for="comments">Your message</label>
+                            {{ form_widget(form.comments) }}
+                        </div>
+                        <div class="f-item full-width">
+                            {{ form_widget(form.Envoyer,{'attr':{'type':'text','class':'form-control border-top-0 border-left-0 border-right-0 rounded-0 pl-4','placeholder':''}}) }}                        </div>
+                    </div>
+                </fieldset>
+                {{ form_end(form) }}
+            </form>
+            ou via le Gmail:
+            <form action="{{ path('my_app_mail_homepage') }}">
+            <input type="submit" value="Gmail">
+            </form>
+        </article>
+        </aside>
+{% endblock %}

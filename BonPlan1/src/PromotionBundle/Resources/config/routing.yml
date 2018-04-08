@@ -1,0 +1,34 @@
+promotion_homepage:
+    path:     /
+    defaults: { _controller: PromotionBundle:Default:index }
+
+
+AjoutPromotion:
+    path:     /AjoutPromotion
+    defaults: { _controller: PromotionBundle:Promotion:AjoutPromotion }
+
+AffichePromotion:
+    path:     /AffichePromotion
+    defaults: { _controller: PromotionBundle:Promotion:AffichePromotion }
+
+ModifierPromotion:
+    path:     /ModifierPromotion
+    defaults: { _controller: PromotionBundle:Promotion:ModifierPromotion }
+
+SupprimerPromotion:
+    path:     /SupprimerPromotion/{id}
+    defaults: { _controller: PromotionBundle:Promotion:SupprimerPromotion }
+Details:
+    path:     /Details/{id}
+    defaults: { _controller: PromotionBundle:Promotion:Details }
+RecherchePromotion:
+    path:     /RecherchePromotion
+    defaults: { _controller: PromotionBundle:Promotion:RecherchePromotion }
+
+AfficherPromotionDash:
+    path:     /AfficherPromotionDash
+    defaults: { _controller: PromotionBundle:Promotion:AfficherDashBoard }
+
+Promotion_Valide:
+    path:     /valide
+    defaults: { _controller: PromotionBundle:Promotion:valide }

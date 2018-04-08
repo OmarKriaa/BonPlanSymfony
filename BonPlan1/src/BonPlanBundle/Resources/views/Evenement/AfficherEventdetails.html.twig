@@ -1,0 +1,112 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+    <!--- loading animation -->
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+    <main class="main">
+
+
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+                <!--crumbs-->
+                <ul>
+                    <li><a href="#" title="Home">Home</a></li>
+
+                </ul>
+                <!--//crumbs-->
+            </nav>
+            <!--//breadcrumbs-->
+
+            <div class="row">
+                <!--three-fourth content-->
+
+
+                    <h1>{{  Evenement.titre|upper }}</h1>
+
+                    <!--inner navigation-->
+                    <nav class="inner-nav">
+                        <ul>
+                            <li><a href="#general_info" title="General information">General information</a></li>
+
+                        </ul>
+                    </nav>
+
+
+                <!--//inner navigation-->
+
+
+                    <!--General information-->
+                    <section id="general_info" class="tab-content">
+                        <article>
+                            <h2>{{ Evenement.titre|upper }}</h2>
+
+                            <figure><img src="{{ asset('images/evenement/'~Evenement.image)}}" alt="{{ Evenement.image }}" /></figure>
+                            <br>
+                            <p><strong>{{ Evenement.description }} </strong></p>
+
+                            <table>
+                                <tr>
+                                    <th>Titre</th>
+                                    <td>{{ Evenement.titre }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Adresse</th>
+                                    <td>{{ Evenement.lieu}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre de place</th>
+                                    <td>{{ Evenement.nbPlace }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Prix</th>
+                                    <td>{{ Evenement.prix }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Date Event </th>
+                                    <td>{{ Evenement.date|date("d M, Y") }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ Evenement.description }}</td>
+                                </tr>
+
+                            </table>
+
+
+                            <div class="form-group col-md-7" align="center" id="btn">
+                                {% if is_granted('ROLE_MEMBRE') %}
+
+
+        <a href="{{ path('Event_participer',{'idevent':Evenement.idevent}) }}" title="View all" name="pa" id="pa">Participer</a>
+
+                                        <br>
+
+        <a href="{{ path('Event_annuler',{'idevent':Evenement.idevent})}}" title="View all" name="anu" id="anu">Annuler</a>
+
+    {% else %}
+
+       <div class='alert alert-block alert-success'>
+
+        <i ></i>
+        Il Faut se connecté en tant que
+        <strong class='red' style='color: red'>Membre</strong>
+        Pour Participer a cette Evenement
+       </div>
+    {% endif %}
+                                <br><br><br>
+<div>
+    {{ socialButtons() }}
+</div>
+
+                            </div>
+                        </article>
+                    </section>
+            </div>
+    </main>
+    <!--//main-->
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'Layout.html.twig' %}
+{% block body %}
+    {% if is_granted('ROLE_MEMBRE') %}
+        <main class="main">
+        <div class="wrap">
+        <!--breadcrumbs-->
+        <nav class="breadcrumbs">
+            <!--crumbs-->
+            <ul>
+                <li><a href="#" title="Home">Home</a></li>
+                <li>Hot deals</li>
+            </ul>
+            <!--//crumbs-->
+        </nav>
+        <!--//breadcrumbs-->
+            <div class="row">
+                <div class="full-width">
+                    <div class="destinations">
+                        <div class="row">
+                            <!--column-->
+
+                            {{ form(form) }}
+                            {% for P in v %}
+                                <article class="one-fourth">
+
+                                    <figure><a href="#" title=""><img src="{{ asset('uploads/images/' ~ P.image) |imagine_filter('EvenementThumb')  }}" alt="" /></a></figure>
+                                    <div class="details">
+                                        <a href="{{ path('Details',{'id':P.id}) }}" title="View all" class="gradient-button" methods="POST">View all</a>
+
+                                        <h4>{{ P.titre }}</h4>
+
+                                        <span class="count"></span>
+                                        <div class="ribbon">
+
+                                            <div class="half flight">
+                                                <a href="flights.html" title="View all">
+
+                                                    <span class="small">Promotion</span>
+                                                    <span class="price"> {{ P.prix }} Dt</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
+  {% endif %}
+{% endblock %}

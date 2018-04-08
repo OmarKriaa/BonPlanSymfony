@@ -1,0 +1,45 @@
+bon_plan_homepage:
+    path:     /index
+    defaults: { _controller: BonPlanBundle:Default:index }
+
+DashBoard:
+    path:     /layout
+    defaults: { _controller: BonPlanBundle:Default:DashBoard }
+
+ContactAdmin:
+    path:     /layout/Contact
+    defaults: { _controller: BonPlanBundle:Default:ListContacts }
+
+ModifierContact:
+    path:     /layout/Contact/Modifier
+    defaults: { _controller: BonPlanBundle:Default:ModifierContact }
+
+SupprimerContact:
+    path:     /layout/Contact/{id}
+    defaults: { _controller: BonPlanBundle:Default:SupprimerContact }
+
+stat:
+    path:     /stat
+    defaults: { _controller: BonPlanBundle:Default:profitsHistory }
+afficherReservationAdmin:
+    path:     /afficherReservation
+    defaults: { _controller: BonPlanBundle:Default:aff }
+afficherReclamation:
+    path:     /afficherReclamation
+    defaults: { _controller: BonPlanBundle:Default:afficherReclamation }
+mail:
+    path:     /mail
+    defaults: { _controller: BonPlanBundle:Default:mail }
+
+Evenement_front:
+    resource: "@BonPlanBundle/Resources/config/routing/event.yml"
+    prefix:   /Evenement
+
+Evenement_back:
+    resource: "@BonPlanBundle/Resources/config/routing/eventDash.yml"
+    prefix:   /Event
+
+Participer_front:
+    resource: "@BonPlanBundle/Resources/config/routing/participer.yml"
+    prefix:   /Participer
+

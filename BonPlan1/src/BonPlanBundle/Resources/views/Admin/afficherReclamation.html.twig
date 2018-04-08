@@ -1,0 +1,50 @@
+{% extends "BonPlanBundle::DashBoard.html.twig" %}
+
+{% block body %}
+
+
+    <div class="row">
+
+        <div class="col-lg-9 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><i class="fa fa-flag-o red"></i><strong>Liste des réclamations</strong></h2>
+
+                </div>
+
+                <h1> liste des reclamations</h1>
+
+                <div class="panel-body">
+                    <table class="table bootstrap-datatable countries">
+                        <thead>
+                        <tr>
+
+                            <th>reclamation</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for reclamation in re %}
+                        <tr>
+                            <td>{{ reclamation.message }}</td>
+
+                        </tr>
+
+                        </tbody>
+                        {% endfor %}
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+{% endblock %}

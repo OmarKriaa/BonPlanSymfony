@@ -1,0 +1,8 @@
+Event_participer:
+    path:     /{idevent}/participer
+    defaults: { _controller: BonPlanBundle:Participerevent:ajouterParticipation }
+
+Event_delete:
+    path:     /{idevent}/delete
+    defaults: { _controller: BonPlanBundle:Participerevent:delete }
+    methods:  [GET]

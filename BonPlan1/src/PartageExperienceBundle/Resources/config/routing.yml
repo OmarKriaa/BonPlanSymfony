@@ -1,0 +1,40 @@
+partage_experience_homepage:
+    path:     /
+    defaults: { _controller: PartageExperienceBundle:Avis:Avis }
+
+Ajout:
+    path:     /Ajout
+    defaults: { _controller: PartageExperienceBundle:Avis:AjouterAvis }
+
+List:
+    path:     /List
+    defaults: { _controller: PartageExperienceBundle:Avis:ListAvis }
+
+Modifier:
+    path:     /Modifier
+    defaults: { _controller: PartageExperienceBundle:Avis:ModifierPartage }
+
+Supprimer:
+    path:     /Supprimer/{idPartageH}
+    defaults: { _controller: PartageExperienceBundle:Avis:SupprimerPartage }
+
+Contact:
+    path:     /Contact
+    defaults: { _controller: PartageExperienceBundle:Contact:Contact }
+
+recherche_ajax:
+    path:     /recherche_ajax
+    defaults: { _controller: PartageExperienceBundle:Avis:rechercheAjax }
+
+PieChart:
+    path:     /PieChart
+    defaults: { _controller: PartageExperienceBundle:Avis:PieChart }
+
+my_app_mail_homepage:
+    path:     /indexMail
+    defaults: { _controller: PartageExperienceBundle:Mail:index }
+
+my_app_mail_accuse:
+    path:     /success
+    defaults: { _controller: PartageExperienceBundle:Mail:success }
+

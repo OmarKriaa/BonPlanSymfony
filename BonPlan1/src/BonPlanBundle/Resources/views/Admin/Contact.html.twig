@@ -1,0 +1,59 @@
+{% extends'BonPlanBundle::DashBoard.html.twig' %}
+
+{% block body %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+    <script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('jqueryShow.js') }}"></script>
+
+        <div class="row">
+
+            <div class="col-lg-9 col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2><i class="fa fa-flag-o red"></i><strong>Liste des Commentaires</strong></h2>
+                        <div class="panel-actions">
+                            <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                            <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                            <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+        <div class="panel-body">
+            <table class="table bootstrap-datatable countries">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Commentaire</th>
+                </tr>
+                {% for c in contact %}
+                <tr>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.email }}</td>
+                    <td>{{ c.comments }}</td>
+                    <td>
+                        <a type="submit" id="Modifier" class="btn btn-info" href="{{ path('ModifierContact',{'id':c.id}) }}">Modifier</a>
+                    </td>
+                    <td>
+                        <a type="submit" id="Supprimer" class="btn btn-info" href="{{ path('SupprimerContact',{'id':c.id}) }}">Supprimer</a>
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+                    <div id="div_chart"></div>
+
+                    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <script type="text/javascript">
+                        {{ gc_draw(piechart, 'div_chart') }} </script>
+
+{% endblock %}

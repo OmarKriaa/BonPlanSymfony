@@ -1,0 +1,94 @@
+{% extends ('layout.html.twig') %}
+{% block body %}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Pay with BrainTree</title>
+
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <!-- braintree -->
+        <script src="https://js.braintreegateway.com/js/braintree-2.31.0.min.js"></script>
+
+        <!-- setting up braintree -->
+        <script>
+            $(document).ready(function () {
+
+
+                $.ajax({
+                    url: "{{ path('generate_token') }}",
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        braintree.setup(data, 'dropin', {container: 'dropin-container'});
+                        console.log(data);
+                    }
+                })
+            });
+        </script>
+
+
+        <style>
+            label.heading {
+                font-weight: 600;
+            }
+
+            .payment-form {
+                width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 10px;
+                border: 1px #333 solid;
+            }
+        </style>
+
+    </head>
+    <body style="text-align: center; margin-top: 100px;">
+
+
+        <!--three-fourth content-->
+        <div class="three-fourth">
+            <form action="{{ path('payment2') }}" method="post" class="static-content booking">
+                <fieldset>
+                    <h2>Payment</h2>
+
+                        <div class="f-item one">
+                            <label for="firstName" class="heading">First Name</label><br>
+                            <input type="text" name="firstName" id="firstName"><br><br>
+                        </div>
+
+
+                    <div class="row">
+                        <div class="f-item one">
+                            <label for="lastName" class="heading">Last Name</label><br>
+                            <input type="text" name="lastName" id="lastName"><br><br>
+                        </div>
+                        <div class="f-item one ">
+                            <label for="amount" class="heading">Amount (USD)</label><br>
+                            <input type="text" name="amount" id="amount"><br><br>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="full-width">
+                            <div id="dropin-container"></div>
+
+                            <button type="submit">Pay with BrainTree</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <aside class="one-fourth right-sidebar">
+        <article class="widget">
+            <h4>Pour plus d'information</h4>
+            <p ><strong>Mail : </strong>bonplan@gmail.com</p>
+            <p ><strong>numero de téléphone : </strong> 28-823-951</p>
+        </article></aside>
+
+    </body>
+{% endblock %}

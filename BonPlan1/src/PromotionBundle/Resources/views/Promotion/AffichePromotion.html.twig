@@ -1,0 +1,44 @@
+{% extends 'Layout.html.twig' %}
+{% block body %}
+    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+
+    <script src="{{ asset('js/jqueryShow.js') }}"></script>
+    {% if is_granted('ROLE_BON_PLANEUR') %}
+
+    <h1>Listes des Promotions</h1>
+    <table border=1>
+        <tr>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Lieu</th>
+            <th>Image</th>
+            <th>DateFin</th>
+            <th>Prix</th>
+            <th>Mettre à jour</th>
+            <th>Suppression</th>
+
+
+        </tr>
+        {% for Promotion in Promotions %}
+            <tr>
+                <td>{{ Promotion.titre }}</td>
+                <td>{{ Promotion.description }}</td>
+                <td>{{ Promotion.lieu }}</td>
+                <td> <img src="{{ asset('uploads/images/' ~ Promotion.image) }}" width="200" height="200"></td>
+                <td>{{ Promotion.datefin|date }}</td>
+                <td>{{ Promotion.prix }}</td>
+
+                <td>
+                      <a type="submit" id="Modifier" href="{{ path('ModifierPromotion',{'id':Promotion.id}) }}">Modifier</a>
+
+                </td>
+                <td>
+                    <a type="submit" id="Supprimer" href="{{ path('SupprimerPromotion',{'id':Promotion.id}) }}">Supprimer</a>
+                </td>
+
+            </tr>
+
+        {% endfor %}
+    </table>
+{% endif %}
+{% endblock %}
