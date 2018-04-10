@@ -1,0 +1,77 @@
+{% extends "BonPlanBundle::DashBoard.html.twig" %}
+{% block body %}
+    <div class="content-b"><div class="content-b">
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2><i class="fa fa-flag-o red"></i><strong>{{ Transports.villedepart }}</strong></h2>
+                            <div class="panel-actions">
+                                <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                                <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="panel-body">
+
+                            <table class="table bootstrap-datatable countries">
+                                <tr>
+                                    <th>ville de depart</th>
+                                    <td>{{  Transports.villedepart }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ville d'arrivee</th>
+                                    <td>{{  Transports.Villearrive }}</td>
+                                </tr>
+                                <tr>
+                                    <th>nombre de place disponible</th>
+                                    <td>
+                                        <div class="progress thin">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ (Transports.nbrplacedispo*100)/5 }}%" aria-valuemin="0" aria-valuemax="100" style="width: {{ (Transports.nbrplacedispo*100)/5 }}%">
+                                            </div>
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow=" {{ 100-(Transports.nbrplacedispo*100)/5 }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ 100-(Transports.nbrplacedispo*100)/5 }}%">
+                                            </div>
+                                        </div>
+                                        <span class="sr-only">{{ (Transports.nbrplacedispo*100)/5 }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>date de depart</th>
+                                    <td>{{ Transports.datedepart|date }}</td>
+                                </tr>
+                                <tr>
+                                    <th>heure de depart</th>
+                                    <td>{{ Transports.heuredepart }}</td>
+                                </tr>
+                                <tr>
+                                    <th>heure d'arrivee</th>
+                                    <td>{{ Transports.heurearrivee }}</td>
+                                </tr>
+                                <tr>
+                                    <th>prix place</th>
+                                    <td>{{ Transports.prixpersonne }}</td>
+                                </tr>
+                            </table>
+                            <center>
+                                <div class="form-group">
+                                    <!-- Buttons -->
+                                    <div class="col-lg-offset-2 col-lg-9">
+                                        {% if(Transports.Validation==0) %}
+                                        <a href="{{ path('Transport_valider', {'idtransport':Transports.idtransport}) }}" title="View all" class="btn btn-primary" >Valider</a>
+                                        {% endif %}
+                                        <a href="{{ path('Transport_delete1', {'idtransport':Transports.idtransport}) }}" title="View all" class="btn btn-danger" >Supprimer</a>
+
+                                    </div>
+                                </div>
+                            </center>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div></div></div>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+<script src="{{ asset('jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('jqueryShow.js') }}"></script>
+{% block rating %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('Rating/css/rating.css') }}" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{{ asset('Rating/js/rating.js') }}"></script>
+{% endblock %}
+
+
+    {% if is_granted('ROLE_MEMBRE') %}
+
+<nav class="inner-nav">
+    <ul>
+
+        <li><a href="#MySettings" title="Settings">Avis Hotels</a></li>
+    </ul>
+</nav>
+
+<form id="MySettings" class="tab-content"  method="post">
+    <article class="mysettings">
+        <h2>Listes des Commentaires</h2>
+
+        <form method="post">
+            <input id="pays" type="date" name="DateCommentaireH">
+        </form>
+        <div id="result"></div>
+        <div id="init">
+            <table border=1>
+                <tr>
+                    <th>Nom</th>
+                    <th>Note Globale de l'Hotel</th>
+                    <th>Note Service</th>
+                    <th>Note Rapport</th>
+                    <th>Note Confort</th>
+                    <th>Note Personnel</th>
+                    <th>Commentaire</th>
+                    <th>Date</th>
+                    <th>Mettre à jour</th>
+                    <th>Suppression</th>
+
+
+                </tr>
+                {% for partage in partages %}
+                    <tr>
+                        <td>{{ partage.NomHotel.nom }}</td>
+                        <td>{{ ((partage.NoteServiceH+partage.NoteRapportH+partage.NoteConfortH+partage.NotePersonnelH)/4)|rating }}</td>
+                        <td>{{ partage.NoteServiceH }}</td>
+                        <td>{{ partage.NoteRapportH }}</td>
+                        <td>{{ partage.NoteConfortH }}</td>
+                        <td>{{ partage.NotePersonnelH }}</td>
+                        <td>{{ partage.commentaireAvisH }}</td>
+                        <td>{{ partage.DateCommentaireH|date }}</td>
+                        <td>
+                            <a type="submit" id="Modifier" href="{{ path('Modifier',{'idPartageH':partage.idPartageH}) }}">Modifier</a>
+                        </td>
+                        <td>
+                            <a type="submit" id="Supprimer" href="{{ path('Supprimer',{'idPartageH':partage.idPartageH}) }}">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+
+
+        </div>
+        <script src="{{ asset("js/jquery-3.2.1.js") }}"></script>
+        <script>
+            $(document).ready(function () {
+
+                $("#pays").keyup(function () {
+                    var filter=$('#pays').val();
+
+                    var data={"DateCommentaireH":filter};
+
+                    $.ajax({
+                        type:"post",
+                        url:"{{ path('recherche_ajax') }}",
+                        data:data,
+                        success:function (data) {
+                            //console.log(data);
+                            $("#result").html('<table border="3" id="res">' +
+                                ' <th>Nom Hotel</th>\n' +
+                                ' <th>Note Service</th>\n' +
+                                '        <th>Note Rapport</th>\n' +
+                                '        <th>Note Confort</th>\n' +
+                                '        <th>Note Personnel</th>\n' +
+                                '        <th>Commentaire</th>\n' +
+                                '        ');
+
+                            $.each(data,function(k,v){
+                                $("#init").hide();
+                                $("#res").append("<tr><td>"+v.NomHotel.nom+"</td>" +
+                                    "<td>"+v.NoteServiceH+"</td>" +
+                                    "<td>"+v.NoteRapportH+"</td>" +
+                                    "<td>"+v.NoteConfortH+"</td>" +
+                                    "<td>"+v.NotePersonnelH+"</td>" +
+                                    "<td>"+v.commentaireAvisH+"</td>" +
+                                    "</tr>")
+
+                            })
+                        }
+                    });
+
+
+                })
+            });
+        </script>
+
+    </article>
+</form>
+{% endif %}
+{% endblock %}

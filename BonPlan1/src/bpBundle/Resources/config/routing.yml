@@ -1,0 +1,116 @@
+bp_homepage:
+    path:     /
+    defaults: { _controller: bpBundle:Default:index }
+
+BpAjouter:
+    path:     /Bpajouter
+    defaults: { _controller: bpBundle:Bp:ajouter }
+
+BpAfficher:
+    path:     /afficher
+    defaults: { _controller: bpBundle:Bp:afficher }
+
+BpAfficherDetails:
+    path:     /{idbonplan}/afficherdetails
+    defaults: { _controller: bpBundle:Bp:afficherdetails }
+
+Bp_Type:
+    path:     /{ville}
+    defaults: { _controller: bpBundle:Bp:type }
+
+Bp_Pb:
+    path:     /
+    defaults: { _controller: bpBundle:Bp:index }
+
+Bp_delete:
+    path:     /{idbonplan}/delete
+    defaults: { _controller: bpBundle:Bp:delete }
+    methods:  [GET]
+
+Bp_edit:
+    path:     /{idbonplan}/edit
+    defaults: { _controller: bpBundle:Bp:edit }
+    methods:  [GET, POST]
+
+rechercheAjax:
+    path:     /ajax
+    defaults: { _controller: bpBundle:Bp:ajax }
+    methods:  [GET, POST]
+
+BpAjouter2:
+    path:     /Bpajouter2
+    defaults: { _controller: bpBundle:Bp:ajouter2 }
+
+Bp2Afficher:
+    path:     /afficher2
+    defaults: { _controller: bpBundle:Bp:afficher2 }
+
+Bp2AfficherDetails:
+    path:     /{idbonplan}/afficherdetails2
+    defaults: { _controller: bpBundle:Bp:afficherdetails2 }
+
+Bp2_Type:
+    path:     /{ville}
+    defaults: { _controller: bpBundle:Bp:type2 }
+    methods:  GET
+
+Bp2_delete:
+    path:     /{idbonplan}/delete2
+    defaults: { _controller: bpBundle:Bp:delete2 }
+    methods:  [GET]
+
+Bp2_edit:
+    path:     /{idbonplan}/edit2
+    defaults: { _controller: bpBundle:Bp:edit2 }
+    methods:  [GET, POST]
+
+AfficherAdminH:
+    path:     /layout/afficherAdminH
+    defaults: { _controller: bpBundle:Bp:afficherAdminHotel }
+    methods:  [GET, POST]
+
+AfficherAdminR:
+    path:     /layout/afficherAdminR
+    defaults: { _controller: bpBundle:Bp:afficherAdminResto }
+    methods:  [GET, POST]
+
+AfficherDetailAdminH:
+    path:     /layout/afficherDetailAdminH
+    defaults: { _controller: bpBundle:Bp:afficherDetailAdminHotel }
+    methods:  [GET, POST]
+
+AfficherDetailAdminR:
+    path:     /layout/afficherDetailAdminR
+    defaults: { _controller: bpBundle:Bp:afficherDetailAdminResto }
+    methods:  [GET, POST]
+
+ValiderH:
+    path:     /layout/{idbonplan}/ValiderH
+    defaults: { _controller: bpBundle:Bp:ValiderAdminHotel }
+    methods:  [GET, POST]
+
+AnnulerH:
+    path:     /layout/{idbonplan}/AnnulerH
+    defaults: { _controller: bpBundle:Bp:AnnulerHotel }
+    methods:  [GET, POST]
+
+ValiderR:
+    path:     /layout/{idbonplan}/ValiderR
+    defaults: { _controller: bpBundle:Bp:ValiderAdminResto }
+    methods:  [GET, POST]
+
+AnnulerR:
+    path:     /layout/{idbonplan}/AnnulerR
+    defaults: { _controller: bpBundle:Bp:AnnulerResto }
+    methods:  [GET, POST]
+
+BpAjouterCom:
+    path:     /{idbonplan}/BpAjouterCom
+    defaults: { _controller: bpBundle:Bp:ajouterCom }
+
+AfficherAdminTous:
+    path:     /layout/afficherAdminTous
+    defaults: { _controller: bpBundle:Bp:afficherAdminTous }
+    methods:  [GET, POST]
+
+

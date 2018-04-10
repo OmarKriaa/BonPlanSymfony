@@ -1,0 +1,43 @@
+{% extends "BonPlanBundle::DashBoard.html.twig" %}
+{% block body %}
+    <div class="content-b"><div class="content-b">
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2><i class="fa fa-flag-o red"></i><strong>Restaurant</strong></h2>
+                            <div class="panel-actions">
+                                <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                                <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <h1>Liste des restaurants</h1>
+
+                            <table class="table bootstrap-datatable countries">
+                                <tr>
+                                    <th></th>
+                                    <th>Restaurant</th>
+                                    <th>Ville</th>
+                                    <th></th>
+
+                                </tr>
+                                {%  for Bp in Bps %}
+                                    <tr>
+
+                                        <td><img src="{{ asset('images/Bp/'~Bp.photo)}}" alt="{{ Bp.photo }}" style="height:70px; margin-top:-2px;"></td>
+                                        <td><h3>{{ Bp.nom }}</h3></td>
+                                        <td><h3>{{ Bp.ville }}</h3></td>
+                                        <td><a href="{{ path('AfficherDetailAdminR' , {'idbonplan':Bp.idbonplan}) }}" type="submit" class="btn btn-primary">Détail</a></td>
+
+                                    </tr>
+                                {%  endfor %}
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div></div></div>
+{% endblock %}

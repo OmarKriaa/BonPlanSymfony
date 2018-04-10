@@ -1,0 +1,81 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+    <!--- loading animation -->
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+    <main class="main">
+
+
+        <!--breadcrumbs-->
+        <nav class="breadcrumbs">
+            <!--crumbs-->
+            <ul>
+                <li><a href="#" title="Home">Home</a></li>
+
+            </ul>
+            <!--//crumbs-->
+        </nav>
+        <!--//breadcrumbs-->
+
+        <div class="row">
+            <!--three-fourth content-->
+
+
+            <h1>{{  Bp.nom|upper }}</h1>
+
+            <!--inner navigation-->
+            <nav class="inner-nav">
+                <ul>
+                    <li><a href="#general_info" title="General information">Consulter</a></li>
+
+                </ul>
+
+            </nav>
+            <!--//inner navigation-->
+
+            <!--General information-->
+            <section id="general_info" class="tab-content">
+                <article>
+                    <h2>{{ Bp.nom|upper }}</h2>
+                    <figure><img src="{{ asset('images/Bp/'~Bp.photo)}}" alt="{{ Bp.photo }}" /></figure>
+                    <br>
+                    <p><strong>{{ Bp.description }} </strong></p>
+
+                    <table>
+                        <tr>
+                            <th>nom</th>
+                            <td>{{ Bp.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Adresse</th>
+                            <td>{{ Bp.adresse}}</td>
+                        </tr>
+                        <tr>
+                            <th>Ville</th>
+                            <td>{{ Bp.ville }}</td>
+                        </tr>
+
+
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ Bp.description }}</td>
+                        </tr>
+
+                    </table>
+                    <a href="{{ path('Bp_delete' , {'idbonplan':Bp.idbonplan}) }}" title="View all" class="gradient-button">Supprimer</a>
+                    <a href="{{ path('Bp_edit' , {'idbonplan':Bp.idbonplan}) }}" title="View all" class="gradient-button">Modifier</a>
+
+                </article>
+            </section>
+
+
+
+
+        </div>
+    </main>
+    <!--//main-->
+{% endblock %}

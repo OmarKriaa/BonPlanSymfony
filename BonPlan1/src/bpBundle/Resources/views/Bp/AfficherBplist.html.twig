@@ -1,0 +1,150 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+    <!--- loading animation -->
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+
+    <!--main-->
+    <main class="main" style="height: 800px">
+        <div class="wrap">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+            <!--crumbs-->
+            <ul>
+                <li><a href="{{ path('BpAfficher' )}}" title="Bons Plans">Bons Plans</a></li>
+
+            </ul>
+            <ul>
+                <li><a href="{{ path('BpAfficher' )}}" title="Hôtels">Hôtels</a></li>
+
+            </ul>
+            <ul>
+                <li><a href="{{ path('BpAfficher' )}}" title="Ville"> Ville </a></li>
+
+            </ul>
+
+            <!--//crumbs-->
+        </nav>
+        <div class="wrap">
+            <div class="row">
+                <div class="full-width">
+                    <!--top destinations-->
+                    <script language="javascript" src="{{ asset('js/jquery.js') }}"></script>
+                    {{ form(Form) }}
+                    <br><br>
+                    {% for Bp in Bps %}
+
+                    <!--chercher-->
+
+
+                    <div id="result">
+
+
+                    </div>
+
+                  <!--  <script>
+                        $(document).ready(function () {
+
+                            $("#search").keyup(function(){
+                                $.ajax({
+                                    type: "get",
+                                    url: "{{ path('rechercheAjax') }}",
+                                    data:"d="+$("#search").val(),
+                                    success: function(data){
+                                        console.log(JSON.parse(data.data));
+                                        $("#result").html('<table id="res" border="2">'+
+                                            '<th>nom</th><th>ville</th></table>');
+                                        var array = JSON.parse(data.data);
+                                        array.forEach(function(k) {
+                                            $("#res").append("<tr>" +
+                                                "<td>"+k.nom+"</td><td>"+k.image+"</td><td>"+k.ville+"</td></tr>");
+                                        })
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <!--chercher-->
+
+                    <script>
+
+
+
+                        $("#search_form").keyup(function(){
+                            $("#content-body").empty();
+                            var nom = $('#bpbundle_bp_nom').val();
+
+                            $.ajax({
+
+                                type: "POST",
+                                url: "{{ path('Bp_Type',{'ville':Bp.ville})}}",
+
+                                data: {
+                                    nom: nom
+                                },
+                                success: function(Bp){
+                                    var tab = JSON.parse(Bp);
+                                    console.log(tab);
+                                    $("#content-body").empty();
+                                    $.each(tab, function(i, Bp) {
+                                        $("#content-body").append(
+                                            "<tr>\n" +
+                                            "                            <td>"+Bp.idbonplan+"</td>\n" +
+                                            "                            <td>"+Bp.nom+"</td>\n" +
+                                            "</tr>"
+                                        )
+                                    });
+                                }
+                            });
+                            return false;
+                        });
+                    </script>
+                    <div class="destinations">
+                        <div class="row">
+                            <!--column-->
+
+
+
+                            <div id="content-body">
+
+                                <article class="one-fourth" style="width: 300px; height: 200px; ">
+                                    <figure><a href="{{ path('BpAfficherDetails' , {'idbonplan':Bp.idbonplan}) }}" title=""><img style="width: 1000px; height: 250px;"  src="{{ asset('images/Bp/'~Bp.photo)}}" alt="{{ Bp.photo }}" /></a></figure>
+                                    <div class="details">
+                                        <a href="{{ path('BpAfficherDetails' , {'idbonplan':Bp.idbonplan}) }}" title="View all" class="gradient-button">Consulter</a>
+                                        <h4>{{ Bp.nom }}</h4>
+
+                                        <div class="ribbon">
+                                            <div class="half hotel">
+                                                <a href="{{ path('BpAfficherDetails' , {'idbonplan':Bp.idbonplan}) }}" title="View all">
+                                                    <span class="price"> {{ Bp.prixnuit }} dt </span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </article>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </main>
+    <div class="pagination pagination" align="center">
+        {{ knp_pagination_render(Bps) }}
+
+    </div>
+{% endblock %}
+
+
+
+
+

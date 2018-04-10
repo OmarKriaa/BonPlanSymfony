@@ -1,0 +1,117 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+    <!--header-->
+
+
+    <!--main-->
+    <main class="main">
+        <div class="wrap">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+                <!--crumbs-->
+                <ul>
+                    <li><a href='{{ path ('bon_plan_homepage') }}' title="Home">Home</a></li>
+                    <li>Get inspired</li>
+                </ul>
+                <!--//crumbs-->
+            </nav>
+            <!--//breadcrumbs-->
+
+            <div class="row">
+                <!--three-fourth content-->
+                <div class="three-fourth">
+                    <header class="s-title">
+                        <h2>What do you like?</h2>
+                    </header>
+                    <a href=""></a>
+                    <!--get inspired list-->
+                    <ul class="get_inspired">
+                        <!--item-->
+                        <li>
+                            <a  href="{{ path('Bp_Type',{'ville':'Tunis'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/get_inspired14.jpg')}}" alt="" />
+                                    <figcaption>Tunis</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <!--//item-->
+
+                        <!--item-->
+                        <li>
+                            <a href="{{ path('Bp_Type',{'ville':'Ariana'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/10135_60508.jpg')}}" alt="" />
+                                    <figcaption>Ariana</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <!--//item-->
+
+                        <!--item-->
+                        <li>
+                            <a  href="{{ path('Bp_Type',{'ville':'Nabeul'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/get_inspired5.jpg')}}" alt="" />
+                                    <figcaption>Nabeul</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <!--//item-->
+
+                        <!--item-->
+
+                        <!--//item-->
+
+                        <!--item-->
+
+
+
+                        <!--item-->
+
+                    </ul>
+
+
+                </div>
+
+                <!--three-fourth content-->
+
+                <!--sidebar-->
+                <aside class="one-fourth right-sidebar">
+
+                    <!--//Deal of the day-->
+
+                    <!--Need Help Booking?-->
+                    <article class="widget">
+                        <h4>Voulez vous ajouter un nouveau hôtel ?</h4>
+                        <p>Cliquer sur ce boutton  <div class="details">
+                            <a href="{{ path('BpAjouter') }}" title="View all" class="gradient-button">Ajouter +</a>
+                    </article>
+                    <!--//Need Help Booking?-->
+
+                    <!--Why Book with us?-->
+                    <article class="widget">
+                        <h4>Why Book with us?</h4>
+                        <h5>Low rates</h5>
+                        <p>Get the best rates, or get a refund.No booking fees. Save money!</p>
+
+                        <h5>We’re Always Here</h5>
+                        <p>Call or email us, anytimeGet 24-hour support before, during, and after your trip</p>
+                    </article>
+                    <!--//Why Book with us?-->
+                </aside>
+                <!--//sidebar-->
+            </div>
+            <!--//main content-->
+        </div>
+    </main>
+    <!--//main-->
+{% endblock %}

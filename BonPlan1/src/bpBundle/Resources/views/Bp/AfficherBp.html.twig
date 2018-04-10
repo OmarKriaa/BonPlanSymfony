@@ -1,0 +1,147 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+    <!--header-->
+
+
+    <!--main-->
+    <main class="main">
+        <div class="wrap">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+                <!--crumbs-->
+                <ul>
+                    <li><a href="{{ path('BpAfficher' )}}" title="Bons Plans">Bons Plans</a></li>
+
+                </ul>
+                <ul>
+                    <li><a href="{{ path('BpAfficher' )}}" title="Hôtels">Hôtels</a></li>
+
+                </ul>
+                <!--//crumbs-->
+            </nav>
+            <!--//breadcrumbs-->
+
+            <div class="row">
+                <!--three-fourth content-->
+                <div class="three-fourth">
+                    <header class="s-title">
+                        <h2>Quelle ville choisir pour séjourner ?</h2>
+                    </header>
+                    <a href=""></a>
+                    <!--get inspired list-->
+                    <ul class="get_inspired">
+                        <!--item-->
+                        <li>
+                            <a  href="{{ path('Bp_Type',{'ville':'Tunis'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/get_inspired14.jpg')}}" alt="" />
+                                    <figcaption>Tunis</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <!--//item-->
+
+                        <!--item-->
+                        <li>
+                            <a href="{{ path('Bp_Type',{'ville':'Ariana'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/10135_60508.jpg')}}" alt="" />
+                                    <figcaption>Ariana</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <!--//item-->
+
+                        <!--item-->
+                        <li>
+                            <a  href="{{ path('Bp_Type',{'ville':'Nabeul'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/get_inspired5.jpg')}}" alt="" />
+                                    <figcaption>Nabeul</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a  href="{{ path('Bp_Type',{'ville':'Sousse'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/get_inspired8.jpg')}}" alt="" />
+                                    <figcaption>Sousse</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li>
+                            <a  href="{{ path('Bp_Type',{'ville':'Touzeur'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/get_inspired7.jpg')}}" alt="" />
+                                    <figcaption>Touzeur</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li>
+                            <a  href="{{ path('Bp_Type',{'ville':'Djerba'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/get_inspired2.jpg')}}" alt="" />
+                                    <figcaption>Djerba</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <li>
+                            <a  href="{{ path('Bp_Type',{'ville':'Ain Draham'}) }}">
+                                <figure>
+                                    <img width="450" height="450" src="{{ asset('images/Bp/get_inspired11.jpg')}}" alt="" />
+                                    <figcaption>Ain Draham</figcaption>
+                                </figure>
+                            </a>
+                        </li>
+                        <!--//item-->
+
+                        <!--item-->
+
+                        <!--//item-->
+
+                        <!--item-->
+
+
+
+                        <!--item-->
+
+                    </ul>
+
+
+                </div>
+
+                <!--three-fourth content-->
+
+                <!--sidebar-->
+                {% if is_granted ('ROLE_BON_PLANEUR') %}
+                <aside class="one-fourth right-sidebar">
+
+<br><br>
+
+
+                    <article class="widget">
+                        <h4>Voulez vous ajouter un nouveau hôtel ?</h4>
+                        <p>Cliquer sur ce boutton  <div class="details"><br>
+                            <a href="{{ path('BpAjouter') }}" title="View all" class="gradient-button">Ajouter +</a>
+                            <br><br>
+                    </article>
+
+                </aside>
+                {% endif %}
+
+                <!--//sidebar-->
+            </div>
+            <!--//main content-->
+        </div>
+    </main>
+    <!--//main-->
+{% endblock %}

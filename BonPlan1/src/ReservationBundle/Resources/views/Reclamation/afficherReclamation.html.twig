@@ -1,0 +1,74 @@
+{% extends ('layout.html.twig') %}
+{% block body %}
+
+    <!--main-->
+    <div class="main">
+        <div class="wrap">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+                <!--crumbs-->
+                <ul>
+                    <li><a href="#" title="Home">Home</a></li>
+                    <li><a href="#" title="My Account">My Account</a></li>
+                </ul>
+                <!--//crumbs-->
+            </nav>
+            <!--//breadcrumbs-->
+
+            <div class="row">
+                <!--three-fourth content-->
+                <section class="three-fourth">
+
+                    <h1>ma réservation</h1>
+
+                    <!--inner navigation-->
+                    <nav class="inner-nav">
+                        <ul>
+                            <li><a href="#MyBookings" title="My Bookings">Ma réservation</a></li>
+
+                        </ul>
+
+                    </nav>
+                    <!--//inner navigation-->
+
+                    <!--My Bookings-->
+                    <section id="MyBookings" class="tab-content">
+                        <!--booking-->
+                        <article class="bookings">
+                            <h2><a href="#">votre reclamation</a></h2>
+                            <div class="b-info">
+                                <table>
+                                    {% for reclamation in re %}
+                                    <tr>
+
+                                        <td>{{ reclamation.message }}</td>
+                                    </tr>
+
+
+                                    {% endfor %}
+                                </table>
+                            </div>
+
+
+
+
+
+
+
+                        </article>
+
+                    </section>
+
+
+                </section>
+                <!--//sidebar-->
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--//main-->
+
+{% endblock %}

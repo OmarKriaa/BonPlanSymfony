@@ -1,0 +1,227 @@
+{% extends "BonPlanBundle::DashBoard.html.twig" %}
+
+{% block body %}
+<div class="content-b">
+<div class="page-header">
+    <h1 style="text-align: center">Modifier transport {{ Transport.villedepart }} </h1>
+</div>
+
+<form method="POST" href="{{ path('Transport_edit', { 'idtransport':Transport.idtransport }) }}"  enctype="multipart/form-data">
+    <div class="container">
+        <div class="form-group">
+            <div class="widget-box widget-color-blue">
+                <table class="table table-striped table-bordered table-hover" >
+                    <tr>
+                        <th colspan="2">
+                            <label>ville de depart :
+                            </label>
+                        </th>
+                        <th>
+                            <div class="form-group col-md-4" align="center">
+                                <select class="form-control" name="villeDepart"  value="{{ Transport.villedepart }} id="villeDepart" vplaceholder="villeDepart" required>
+                                    <option>Ariana</option>
+                                    <option>Béja</option>
+                                    <option>Ben Arous</option>
+                                    <option>Bizerte</option>
+                                    <option>Gabes</option>
+                                    <option>Gafsa</option>
+                                    <option>Jendouba</option>
+                                    <option>Kairouan</option>
+                                    <option>Kasserine</option>
+                                    <option>Kebili</option>
+                                    <option>La Manouba</option>
+                                    <option>Le Kef</option>
+                                    <option>Mahdia</option>
+                                    <option>Médenine</option>
+                                    <option>Monastir</option>
+                                    <option>Nabeul</option>
+                                    <option>Sfax</option>
+                                    <option>Sidi Bouzid</option>
+                                    <option>Siliana</option>
+                                    <option>Sousse</option>
+                                    <option>Tataouine</option>
+                                    <option>Tozeur</option>
+                                    <option>Tunis</option>
+                                    <option>Zaghouan</option>
+                                </select>
+                            </div>
+
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <label>ville d'arrivee :
+                            </label>
+                        </th>
+                        <th>
+                            <div class="form-group col-md-4" align="center">
+                                <select class="form-control" name="villeArrive" value="{{ Transport.Villearrive }}" id="villeArrive" placeholder="villeArrive" required>
+                                    <option>Ariana</option>
+                                    <option>Béja</option>
+                                    <option>Ben Arous</option>
+                                    <option>Bizerte</option>
+                                    <option>Gabes</option>
+                                    <option>Gafsa</option>
+                                    <option>Jendouba</option>
+                                    <option>Kairouan</option>
+                                    <option>Kasserine</option>
+                                    <option>Kebili</option>
+                                    <option>La Manouba</option>
+                                    <option>Le Kef</option>
+                                    <option>Mahdia</option>
+                                    <option>Médenine</option>
+                                    <option>Monastir</option>
+                                    <option>Nabeul</option>
+                                    <option>Sfax</option>
+                                    <option>Sidi Bouzid</option>
+                                    <option>Siliana</option>
+                                    <option>Sousse</option>
+                                    <option>Tataouine</option>
+                                    <option>Tozeur</option>
+                                    <option>Tunis</option>
+                                    <option>Zaghouan</option>
+                                </select>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <label>nombre de place disponible  :
+                            </label>
+                        </th>
+                        <th>
+                            <input name="nbrPlaceDispo" value="{{ Transport.nbrplacedispo }}" type="number" id="nbrPlaceDispo"  required="required">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <label>heure de depart :
+                            </label>
+                        </th>
+                        <th>
+                            <input name="heureDepart" value="{{ Transport.heuredepart }}" type="number" id="heureDepart"  required="required">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <label>heure d'arrivée :
+                            </label>
+                        </th>
+                        <th>
+                            <input name="heureArrivee" value="{{ Transport.heurearrivee }}" type="number" id="heureArrivee"  required="required">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <label>Prix de la nuit :
+                            </label>
+                        </th>
+                        <th>
+                            <input name="prixPersonne" value="{{ Transport.prixpersonne }}" type="number" id="prixPersonne"  required="required">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <label>date de depart :
+                            </label>
+                        </th>
+                        <th>
+                            <input name="dateDepart" value="{{ Transport.datedepart|date }}" type="date" id="dateDepart"  required="required">
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="middle" >
+                            <button type="submit" class="btn btn-primary">
+                                Modifier
+                                <i class="ace-icon fa fa-floppy-o bigger-160"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="{{ asset('assets/js/jquery-2.1.4.min.js') }}" ></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
+<script type="text/javascript">
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                $('#imagePreview').hide();
+                $('#imagePreview').fadeIn(650);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imageUpload").change(function() {
+        readURL(this);
+    });
+</script>
+<style>
+    .avatar-upload {
+        position: relative;
+        max-width: 205px;
+        margin: 50px auto;
+    }
+    .avatar-upload .avatar-edit {
+        position: absolute;
+        right: 12px;
+        z-index: 1;
+        top: 10px;
+    }
+    .avatar-upload .avatar-edit input {
+        display: none;
+    }
+    .avatar-upload .avatar-edit input + label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #ffffff;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+    }
+    .avatar-upload .avatar-edit input + label:hover {
+        background: #f1f1f1;
+        border-color: #d6d6d6;
+    }
+    .avatar-upload .avatar-edit input + label:after {
+        content: "\f040";
+        font-family: "FontAwesome";
+        color: #757575;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: auto;
+    }
+    .avatar-upload .avatar-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 100%;
+        border: 6px solid #f8f8f8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+    }
+    .avatar-upload .avatar-preview > div {
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+</style>
+
+</div>
+{% endblock %}

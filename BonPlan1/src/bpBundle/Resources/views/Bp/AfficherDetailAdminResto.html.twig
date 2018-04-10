@@ -1,0 +1,60 @@
+{% extends "BonPlanBundle::DashBoard.html.twig" %}
+{% block body %}
+    <div class="content-b"><div class="content-b">
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2><i class="fa fa-flag-o red"></i><strong>{{ Bp.nom }}</strong></h2>
+                            <div class="panel-actions">
+                                <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                                <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                                <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+
+
+                        <figure><img src="{{ asset('images/Bp/'~Bp.photo)}}" alt="{{ Bp.photo }}" ></figure><h1><center> <span class="lite">{{ Bp.nom|upper }}</span></center></h1>
+
+
+                        <div class="panel-body">
+
+                            <table class="table bootstrap-datatable countries">
+                                <tr>
+                                    <th>Nom</th>
+                                    <td>{{ Bp.nom }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ Bp.description }}</td>
+                                </tr>
+
+                                <tr>
+                                    <th>Adresse</th>
+                                    <td>{{ Bp.adresse}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ville</th>
+                                    <td>{{ Bp.ville }}</td>
+                                </tr>
+
+                            </table>
+                            <center>
+                                <div class="form-group">
+                                    <!-- Buttons -->
+                                    <div class="col-lg-offset-2 col-lg-9">
+
+                                        <td><a href="{{ path('ValiderR' , {'idbonplan':Bp.idbonplan}) }}" type="submit" class="btn btn-primary">Valider</a></td>
+                                        <td><a href="{{ path('AnnulerR' , {'idbonplan':Bp.idbonplan}) }}" type="submit" class="btn btn-danger">Annuler</a></td>
+                                        <td><a href="{{ path('AfficherAdminR' , {'idbonplan':Bp.idbonplan}) }}" type="reset" class="btn btn-default">Retour</a></td>
+
+                                    </div>
+                                </div>
+                            </center>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div></div></div>
+{% endblock %}

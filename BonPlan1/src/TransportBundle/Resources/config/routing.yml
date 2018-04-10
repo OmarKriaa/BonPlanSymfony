@@ -1,0 +1,100 @@
+
+transport_homepage:
+    path:     /
+    defaults: { _controller: TransportBundle:Default:index }
+
+TransportAjouter:
+    path:     /ajouter
+    defaults: { _controller: TransportBundle:Transport:ajouterTransport }
+AffichageCovoiturage:
+    path:     /layout/afficherCovoiturage
+    defaults: { _controller: TransportBundle:Transport:typeAdminCovoiturage }
+AffichageTrain:
+    path:     /layout/afficherTrain
+    defaults: { _controller: TransportBundle:Transport:typeAdminTrain }
+Delete_Transport:
+    path:     /Delete/{id}
+    defaults: { _controller:  TransportBundle:Transport:Delete}
+Update_Transport:
+    path:     /Update/{id}
+    defaults: { _controller: TransportBundle:Transport:Update}
+Recherche_Transport:
+    path:     /Recherche
+    defaults: { _controller: TransportBundle:Transport:Recherche}
+TransportAfficher:
+    path:     /afficher
+    defaults: { _controller: TransportBundle:Transport:afficher }
+
+TransportAfficherDetails:
+    path:     /{idtransport}/afficherdetails
+    defaults: { _controller: TransportBundle:Transport:afficherdetails }
+
+Transport_Type:
+    path:     /{ville}
+    defaults: { _controller:TransportBundle:Transport:type }
+    methods:  GET
+
+Transport_Pb:
+    path:     /
+    defaults: { _controller: TransportBundle:Transport:index }
+Transport_delete:
+    path:     /{idtransport}/delete
+    defaults: { _controller: TransportBundle:Transport:delete }
+    methods:  [GET]
+Transport_edit:
+    path:     /{idtransport}/edit
+    defaults: { _controller: TransportBundle:Transport:edit }
+    methods:  [GET, POST]
+Transport_valider:
+    path:     /{idtransport}/valider
+    defaults: { _controller: TransportBundle:Transport:Valider }
+    methods:  [GET]
+Transport_participer:
+    path:     /{idtransport}/participer
+    defaults: { _controller: TransportBundle:Transport:Participer }
+    methods:  [GET]
+Transport_signaler:
+    path:     /{idtransport}/signaler
+    defaults: { _controller: TransportBundle:Transport:Signaler }
+    methods:  [GET]
+TransportAjouter1:
+    path:     layout/admin
+    defaults: { _controller: TransportBundle:Transport:admin }
+Transport_edit1:
+    path:     layout/{idtransport}/Editadmin
+    defaults: { _controller: TransportBundle:Transport:editAdmin }
+    methods:  [GET, POST]
+Transport_delete1:
+    path:     layout/{idtransport}/delete
+    defaults: { _controller: TransportBundle:Transport:deleteAdmin }
+    methods:  [GET]
+TransportAdminvalider:
+    path:     layout/{idtransport}/valider
+    defaults: { _controller: TransportBundle:Transport:ValiderAdmin }
+    methods:  [GET]
+TransportAfficherAdminDetails:
+    path:     /{idtransport}/afficherdetailsAdmin
+    defaults: { _controller: TransportBundle:Transport:afficherdetailsAdmin }
+Transport_annuler:
+    path:     /{idtransport}/annuler
+    defaults: { _controller: TransportBundle:Transport:Annuler }
+    methods:  [GET]
+rechercheCov:
+    path:     /ajax
+    defaults: { _controller: TransportBundle:Transport:rechercheAjax }
+    methods:  [GET]
+TransportChercher:
+    path:     /chercher
+    defaults: { _controller: TransportBundle:Transport:chercher }
+TransportAjouterCom:
+    path:     /{idtransport}/TransportAjouterCom
+    defaults: { _controller: TransportBundle:Transport:ajouterCom }
+rechercheAjax:
+    path:     layout/recherche
+    defaults: { _controller: TransportBundle:Transport:ajax }
+
+StatTransport:
+    path:     layout/stattran
+    defaults: { _controller: TransportBundle:Transport:PieChart }
+
+

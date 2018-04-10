@@ -1,0 +1,144 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <div class="slider" style="height: 530px;">
+        <ul id="hero-gallery" class="cS-hidden">
+            <li data-thumb="images/uploads/slider7.jpg">
+                <img src="{{ asset('images/Transport/Capture.png') }}" alt="" />
+            </li>
+
+        </ul>
+    </div>
+    <div class="main-search">
+    <div class="wrap">
+
+    <form id="main-search" method="post" action="{{ path('TransportChercher') }}" style="top: -140px;width: 0px;padding: unset;    border: 0px solid #fff;
+">
+
+
+        <table border="0" style="width: 300px">
+            <td  style="background-color: #E9E6E0" style="width: 300px">
+                <input type="search" placeholder="Départ" name="depart" id="site_search" style="width: 300px">
+            </td>
+            <td style="background-color: #E9E6E0" style="width: 300px">
+                <input type="text" placeholder="Destination" name="arrivee" id="site_search" style="width: 300px" />
+            </td>
+            <td style="background-color: #E9E6E0" style="width: 300px">
+                <input type="date" placeholder="Départ" name="date" id="site_search" style="width: 300px " />
+            </td>
+            <td style="background-color: #E9E6E0" style="width: 300px" >
+                <input type="submit" id="submit-site-search" value="chercher un trajet" name="submit-site-search" style="height:35px ; "/>
+            </td>
+        </table>
+    </form>
+    </div></div>
+    <!--- //loading animation -->
+
+    <!--header-->
+
+
+    <!--main-->
+    <main class="main">
+        <div class="wrap">
+            <!--breadcrumbs-->
+
+            <!--//breadcrumbs-->
+
+            <div class="row">
+                <!--three-fourth content-->
+                <div class="three-fourth">
+
+
+
+
+
+
+
+                    <!--get inspired list-->
+
+
+                </div>
+
+                <div >
+
+                    <article class="HomeBlock u-lightestGray-bg u-darkGray" id="homepage-block-driver">
+                        <div class="HomeBlock-inner">
+                            <div class="HomeBlock-media HomeBlock-media--primary">
+                                <div >
+                                    <img src="{{ asset('images/Transport/homeblock_driver_desktop.jpg')}}" style="float:left;margin:3px 50px 0 90px; height:400px"
+                                    >
+                                </div> <br><br><br>
+
+                                <div class="HomeBlock-content HomeBlock-content--even" >
+                                    <h1 class="HomeBlock-title" style=" color: #054752 !important ; font-size:35px">Vous avez une voiture ? Ne roulez pas seuls !</h1>
+                                    <h3 class="u-marginNone u-space-4" style=" color: #054752 !important ; margin-bottom: 16px !important ">Ensemble, permettons à des millions de personnes de se déplacer.</h3>
+                                {% if(user!=NULL) %}
+                                    <center><a href="{{ path('TransportAjouter' ) }}" title="View all" class="gradient-button" style="height:30px" ><h3 style="color: white">Proposer un trajet</h3> </a></center>
+                                {% elseif (user==NULL) %}
+                                    <h3 class="u-marginNone u-space-4" style=" color: #054752 !important ; margin-bottom: 16px !important ">Connectez vous et proposer un trajet</h3>
+
+                                {% endif %}
+                                    </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+            <br><br><br><br><br><br><br>
+
+
+                <h1 class="HomeBlock-title" style=" color: #054752 !important ; font-size:35px">Où allez vous</h1>
+
+                <div class="destinations">
+                    <div class="row">
+                        <!--column-->
+                        <div id="content-body">
+                            {% for Transport in Transports %}
+
+
+
+                                <article class="one-fourth">
+                                    <figure><a href="{{ path('TransportAfficherDetails' , {'idtransport':Transport.idtransport}) }}" title=""></a></figure>
+                                    <div class="details">
+                                        <a href="{{ path('TransportAfficherDetails' , {'idtransport':Transport.idtransport}) }}" title="View all" class="gradient-button">Details</a>
+                                       <center> <h4>{{ Transport.villedepart }}  <img src="{{ asset('images/Transport/voiture.png')}}" style="height: 20px;"
+                                            >  {{  Transport.Villearrive }}</h4></center>
+
+                                        <div class="ribbon">
+                                            <div class="half hotel">
+                                                <a href="{{ path('TransportAfficherDetails' , {'idtransport':Transport.idtransport}) }}" title="View all">
+                                                    <span > {{ Transport.prixpersonne }}DT</span>
+                                                </a>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--//main content-->
+
+
+
+
+    </main>
+
+    <!--//main-->
+{% endblock %}

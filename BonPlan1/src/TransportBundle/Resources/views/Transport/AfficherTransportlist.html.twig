@@ -1,0 +1,98 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+    <!--- loading animation -->
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+
+    <!--main-->
+    <main class="main">
+        <div class="wrap">
+            <div class="row">
+                <div class="full-width">
+                    <!--top destinations-->
+                    <header class="s-title">
+                        <h2>Covoiturage</h2>
+                    </header>
+
+
+                    </div>
+                    <div class="destinations">
+                        <div class="row">
+                            <!--column-->
+                            <div id="content-body">
+                            {% for Transport in Transports %}
+
+
+
+                                <article class="one-fourth">
+                                    <figure><a href="{{ path('TransportAfficherDetails' , {'idtransport':Transport.idtransport}) }}" title=""></a></figure>
+                                    <div class="details">
+                                        <a href="{{ path('TransportAfficherDetails' , {'idtransport':Transport.idtransport}) }}" title="View all" class="gradient-button">Details</a>
+                                        <center> <h4>{{ Transport.villedepart }}  <img src="{{ asset('images/Transport/voiture.png')}}" style="height: 20px;"
+                                                >  {{  Transport.Villearrive }}</h4></center>
+
+                                        <div class="ribbon">
+                                            <div class="half hotel">
+                                                <a href="{{ path('TransportAfficherDetails' , {'idtransport':Transport.idtransport}) }}" title="View all">
+                                                    <span class="">&#36; {{ Transport.prixpersonne }} DT</span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </article>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--//top destinations-->
+                </div>
+            </div>
+        </div>
+    </main>
+<div id="result"></div>
+<div id="init">
+    <script language="javascript" src="{{ asset('js/jquery-3.2.1.js') }}"></script>
+
+    <script>
+
+        $("#datedepart").keyup(function(){
+            $("#content-body").empty();
+            var nom = $('#datedepart').val();
+            var data={"datedepart":nom};
+            $.ajax({
+
+                type: "POST",
+                url: "{{ path('rechercheCov')}}",
+
+                data: {
+                    nom: nom
+                },
+                success: function(data){
+                    //  var tab = JSON.parse(Transport);
+                    //  console.log(tab);
+                    $("#content-body").empty();
+                    $.each(data, function(i, Transport) {
+                        $("#content-body").append(
+                            "<tr>\n" +
+                            "                            <td>"+Transport.idtransport+"</td>\n" +
+                            "                            <td>"+Transport.villedepart+"</td>\n" +
+                            "</tr>"
+                        )
+                    });
+                }
+            });
+            return false;
+        });
+    </script>
+    <!--//main-->
+
+
+{% endblock %}
+

@@ -1,0 +1,133 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+    <!--- loading animation -->
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+
+    <!--main-->
+    <main class="main">
+        <div class="wrap">
+            <div class="row">
+                <div class="full-width">
+                    <!--top destinations-->
+                    <header class="s-title">
+                        <h2>Bon Plan</h2>
+                    </header>
+
+                    <script language="javascript" src="{{ asset('js/jquery.js') }}"></script>
+                    {% for Bp in Bps %}
+
+                    <!--chercher-->
+                    <form method="post">
+                        chercher un bon plan
+                        <input type="text" name="d" id="search">
+
+                    </form>
+                    <br><br>
+
+                    <div id="result">
+
+
+                    </div>
+
+                    <script>
+                        $(document).ready(function () {
+
+                            $("#search").keyup(function(){
+                                $.ajax({
+                                    type: "get",
+                                    url: "{{ path('rechercheAjax') }}",
+                                    data:"d="+$("#search").val(),
+                                    success: function(data){
+                                        console.log(JSON.parse(data.data));
+                                        $("#result").html('<table id="res" border="2">'+
+                                            '<th>nom</th><th>ville</th></table>');
+                                        var array = JSON.parse(data.data);
+                                        array.forEach(function(k) {
+                                            $("#res").append("<tr>" +
+                                                "<td>"+k.nom+"</td><td>"+k.image+"</td><td>"+k.ville+"</td></tr>");
+                                        })
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                    <!--chercher-->
+
+                    <script>
+
+
+
+                        $("#search_form").keyup(function(){
+                            $("#content-body").empty();
+                            var nom = $('#bpbundle_bp_nom').val();
+
+                            $.ajax({
+
+                                type: "POST",
+                                url: "{{ path('Bp_Type',{'ville':Bp.ville})}}",
+
+                                data: {
+                                    nom: nom
+                                },
+                                success: function(Bp){
+                                    var tab = JSON.parse(Bp);
+                                    console.log(tab);
+                                    $("#content-body").empty();
+                                    $.each(tab, function(i, Bp) {
+                                        $("#content-body").append(
+                                            "<tr>\n" +
+                                            "                            <td>"+Bp.idbonplan+"</td>\n" +
+                                            "                            <td>"+Bp.nom+"</td>\n" +
+                                            "</tr>"
+                                        )
+                                    });
+                                }
+                            });
+                            return false;
+                        });
+                    </script>
+                    <div class="destinations">
+                        <div class="row">
+                            <!--column-->
+
+
+
+                            <div id="content-body">
+
+                                <article class="one-fourth">
+                                    <figure><a href="{{ path('BpAfficherDetails' , {'idbonplan':Bp.idbonplan}) }}" title=""><img width="1000" height="1000" src="{{ asset('images/Bp/'~Bp.photo)}}" alt="{{ Bp.photo }}" /></a></figure>
+                                    <div class="details">
+                                        <a href="{{ path('BpAfficherDetails' , {'idbonplan':Bp.idbonplan}) }}" title="View all" class="gradient-button">View all</a>
+                                        <h4>{{ Bp.nom }}</h4>
+
+                                        <div class="ribbon">
+                                            <div class="half hotel">
+                                                <a href="{{ path('BpAfficherDetails' , {'idbonplan':Bp.idbonplan}) }}" title="View all">
+                                                    <span class="price">&#36; {{ Bp.prixnuit }}</span>
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </article>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--//top destinations-->
+                </div>
+            </div>
+        </div>
+    </main>
+    <!--//main-->
+
+
+{% endblock %}
+

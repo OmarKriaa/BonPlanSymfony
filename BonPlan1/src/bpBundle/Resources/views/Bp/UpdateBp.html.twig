@@ -1,0 +1,216 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <div class="page-header">
+        <h1> {{ Bp.nom }} </h1>
+    </div>
+
+    <form method="POST" href="{{ path('Bp_edit', { 'idbonplan': Bp.idbonplan }) }}"  enctype="multipart/form-data">
+        <div class="container">
+            <div class="form-group">
+                <div class="widget-box widget-color-blue">
+
+                    <table class="table table-striped table-bordered table-hover" >
+
+                        <tr>
+                            <th colspan="2">
+                                <label>Nom :
+                                </label>
+                            </th>
+                            <th>
+                                <input name="nom" value="{{ Bp.nom }}" type="text" id="nom"  required="required">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <label>Description :
+                                </label>
+                            </th>
+                            <th>
+                                <input type="text" name="description" id="descrption"  value="{{ Bp.description }}"  required="required">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <label>Adresse  :
+                                </label>
+                            </th>
+                            <th>
+                                <textarea name="adresse" rows="4" cols="50"  id="adresse"  required="required">{{ Bp.adresse }} </textarea>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <label>Ville :
+                                </label>
+                            </th>
+                            <th>
+                                <div class="form-group col-md-4">
+                                    <select required  class="form-control form-control-lg"   title="ville" id="ville" name="ville">
+
+                                        <option selected="selected" value="null" disabled >-- selectionner une ville --</option>
+                                        {% if Bp.ville == 'Tunis' %}
+                                            <option value="Tunis" selected>tunis</option>
+                                        {% else %}
+                                            <option value="Tunis" >Tunis</option>
+                                        {% endif %}
+                                        {% if Bp.ville == 'Ariana' %}
+                                            <option value="Ariana" selected>Ariana</option>
+                                        {% else %}
+                                            <option value="Ariana" >Ariana</option>
+                                        {% endif %}
+                                        {% if Bp.ville == 'Nabeul' %}
+                                            <option value="Nabeul" selected>Nabeul</option>
+                                        {% else %}
+                                            <option value="Nabeul">Nabeul</option>
+                                        {% endif %}
+                                        {% if Bp.ville == 'Sousse' %}
+                                            <option value="Sousse" selected>Sousse</option>
+                                        {% else %}
+                                            <option value="Sousse">Sousse</option>
+                                        {% endif %}
+                                        {% if Bp.ville == 'Sfax' %}
+                                            <option value="Sfax" selected>Sfax</option>
+                                        {% else %}
+                                            <option value="Sfax">Sfax</option>
+                                        {% endif %}
+
+
+
+                                    </select>
+
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <label>Nombre des chambres :
+                                </label>
+                            </th>
+                            <th>
+                                <input name="nbrechambredispo" value="{{ Bp.nbrechambredispo }}" type="number" id="nbrechambredispo"  required="required">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                <label>Prix de la nuit :
+                                </label>
+                            </th>
+                            <th>
+                                <input name="prixnuit" value="{{ Bp.prixnuit }}" type="number" id="prixnuit"  required="required">
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th colspan="2">
+                                <label>Image :
+                                </label>
+                            </th>
+                            <th>
+                                <div class="avatar-upload">
+                                    <div class="avatar-edit">
+                                        <input type='file' name="imageUpload" id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                        <label for="imageUpload"></label>
+                                    </div>
+                                    <div class="avatar-preview">
+                                        <div id="imagePreview" style="background-image: url( {{ asset('images/Bp/'~Bp.photo) }});">
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="3" align="middle" >
+                                <button type="submit" class="btn btn-app btn-success btn-xs radius-4">
+                                    Modifier
+                                    <i class="ace-icon fa fa-floppy-o bigger-160"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="{{ asset('assets/js/jquery-2.1.4.min.js') }}" ></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
+    <script type="text/javascript">
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+    </script>
+    <style>
+        .avatar-upload {
+            position: relative;
+            max-width: 205px;
+            margin: 50px auto;
+        }
+        .avatar-upload .avatar-edit {
+            position: absolute;
+            right: 12px;
+            z-index: 1;
+            top: 10px;
+        }
+        .avatar-upload .avatar-edit input {
+            display: none;
+        }
+        .avatar-upload .avatar-edit input + label {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #ffffff;
+            border: 1px solid transparent;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+        }
+        .avatar-upload .avatar-edit input + label:hover {
+            background: #f1f1f1;
+            border-color: #d6d6d6;
+        }
+        .avatar-upload .avatar-edit input + label:after {
+            content: "\f040";
+            font-family: "FontAwesome";
+            color: #757575;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            margin: auto;
+        }
+        .avatar-upload .avatar-preview {
+            width: 192px;
+            height: 192px;
+            position: relative;
+            border-radius: 100%;
+            border: 6px solid #f8f8f8;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        }
+        .avatar-upload .avatar-preview > div {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    </style>
+{% endblock %}

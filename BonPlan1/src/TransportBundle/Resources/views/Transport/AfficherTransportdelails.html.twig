@@ -1,0 +1,213 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+    <!--- loading animation -->
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <div class="slider" style="height: 530px;">
+        <ul id="hero-gallery" class="cS-hidden">
+            <li data-thumb="images/uploads/slider7.jpg">
+                <img src="{{ asset('images/Transport/Capture.png') }}" alt="" />
+            </li>
+
+        </ul>
+    </div>
+    <div class="main-search">
+        <div class="wrap">
+
+            <form id="main-search" method="post" action="{{ path('TransportChercher') }}" style="top: -140px;width: 0px;padding: unset;    border: 0px solid #fff;
+">
+
+
+
+                <table border="0" style="width: 300px">
+                    <td  style="background-color: #E9E6E0" style="width: 300px">
+                        <input type="search" placeholder="Départ" name="depart" id="site_search" style="width: 300px">
+                    </td>
+                    <td style="background-color: #E9E6E0" style="width: 300px">
+                        <input type="text" placeholder="Destination" name="arrivee" id="site_search" style="width: 300px" />
+                    </td>
+                    <td style="background-color: #E9E6E0" style="width: 300px">
+                        <input type="date" placeholder="Départ" name="date" id="site_search" style="width: 300px " />
+                    </td>
+                    <td style="background-color: #E9E6E0" style="width: 300px" >
+                        <input type="submit" id="submit-site-search" value="chercher un trajet" name="submit-site-search" style="height:35px ; "/>
+                    </td>
+                </table>
+            </form>
+        </div></div>
+    <!--- //loading animation -->
+
+    <br class="main">
+
+
+        <!--breadcrumbs-->
+
+        <!--//breadcrumbs-->
+
+        <br class="row">
+            <!--three-fourth content-->
+
+
+            <!--inner navigation-->
+
+
+    {% if (user==NULL) %}
+        <h2 class="u-marginNone u-space-4" style=" color: #054752 !important ">Connectez vous pour participer à ce covoiturage</h2>
+        {% endif %}
+    {% if Transports.Nbrplacedispo==0 %}
+        <center><img src="{{ asset('images/Transport/complet.png') }}" alt="" width="250px"/></center>
+        {% endif %}
+    <br><br><br><br><br>
+    <nav class="inner-nav">
+    <article class="one-fourth">
+        <br>
+        <article>
+            <table style="width: 250px">
+                {% for Coms in Coms %}
+                    <tr> <td style=""><h6>{{ Coms.idpersonne }} :</h6> {{ Coms.Champs }}</td> </tr>
+                {% endfor %}
+            </table>
+        </article>
+    {% if(user!=NULL) %}
+        <form id="newsletter" action="{{ path('TransportAjouterCom', {'idtransport':Transports.idtransport}) }}" method="POST">
+            <fieldset>
+                <input type="text" id="newsletter_signup" name="commentaire" placeholder="Un mot sur ce covoiturage ?..." style="width:250px" />
+                <input type="submit" id="newsletter_submit" name="newsletter_submit" value="Commenter"  class="gradient-button" />
+
+            </fieldset>
+        </form>
+        {% endif %}
+    </article>
+    </nav>
+            <!--//inner navigation-->
+
+            <!--General information-->
+    <center>
+          <section id="general_info" class="tab-content" style="top: 67px;
+            left: 92px;">
+
+                <article >
+
+                    <br>
+
+                    <table>
+                        <tr>
+                            <th >ville de depart</th>
+                            <td >{{  Transports.villedepart }}</td>
+                        </tr>
+                        <tr>
+                            <th>ville d'arrivee</th>
+                            <td>{{  Transports.Villearrive }}</td>
+                        </tr>
+                        <tr>
+                            <th>nombre de place disponible</th>
+                            <td>{{ Transports.nbrplacedispo}}</td>
+                        </tr>
+                        <tr>
+                            <th>date de depart</th>
+                            <td>{{ Transports.datedepart|date }}</td>
+                        </tr>
+                        <tr>
+                            <th>heure de depart</th>
+                            <td>{{ Transports.heuredepart }}H</td>
+                        </tr>
+                        <tr>
+                            <th>heure d'arrivee</th>
+                            <td>{{ Transports.heurearrivee }}H</td>
+                        </tr>
+                        <tr>
+                            <th>prix place</th>
+                            <td>{{ Transports.prixpersonne }}DT</td>
+                        </tr>
+
+                    </table>
+
+
+                        {% if(user!=NULL) %}
+                            {% if((user!=Transports.idPersonne) ) %}
+                                {% if(Participation==NULL) %}
+                                      <a href="{{ path('Transport_participer' , {'idtransport':Transports.idtransport}) }}" title="View all" class="gradient-button" style="width:320px" style="length:50px"><h3>Participer</h3></a>
+                                    <a href="{{ path('Transport_signaler' , {'idtransport':Transports.idtransport}) }}" title="View all" class="gradient-button" style="width:320px" style="length:50px"><h3>Signaler</h3></a>
+                                {% elseif(Participation!=NULL) %}
+
+                                    <a href="{{ path('Transport_signaler' , {'idtransport':Transports.idtransport}) }}" title="View all" class="gradient-button" style="width:320px" style="length:50px"><h3>Signaler</h3></a>                              {% endif %}
+                            {% elseif(user==Transports.idPersonne) %}
+                                   <a href="{{ path('Transport_edit' , {'idtransport':Transports.idtransport}) }}" title="View all" class="gradient-button" style="width:320px" style="length:50px"><h3>Modifier</h3></a>
+                                 <a href="{{ path('Transport_delete' , {'idtransport':Transports.idtransport}) }}" title="View all" class="gradient-button" style="width:320px" style="length:50px"><h3>Supprimer</h3></a>
+
+
+
+                            {% endif %}
+                        {% endif %}
+
+
+                </article>
+            <br>
+              <input type="text" id="ville" style="display: none;" value="{{ Transports.Villearrive }}">
+              <!DOCTYPE html>
+              <html>
+              <head>
+                  <style>
+                      #map{
+                          height:400px ;
+                          width: 100%;
+                      }
+                  </style>
+              </head>
+              <body>
+              <div id="map"></div>
+              <script>
+                  function initMap() {
+
+                      if ($("#ville").val()=="Nabeul"){
+                          var uluru = {lat:36.4073 , lng:10.6225 };
+                      }
+                      else if ($("#ville").val()=="Tunis") {
+                          var uluru = {lat:36.8529 , lng:10.3217 };
+                      }
+                      else if ($("#ville").val()=="Sousse") {
+                          var uluru = {lat:35.8245 , lng:10.6346 };
+                      }
+                      else if ($("#ville").val()=="Ain Draham") {
+                          var uluru = {lat:36.7736 , lng:8.6848 };
+                      }
+                      else if ($("#ville").val()=="Touzeur") {
+                          var uluru = {lat:33.9185 , lng:8.1229 };
+                      }
+                      else if ($("#ville").val()=="djerba") {
+                          var uluru = {lat:33.8076 , lng:10.8451 };
+                      }
+                      else if ($("#ville").val()=="Ariana") {
+                          var uluru = {lat:36.8665 , lng:10.1647 };
+                      }
+                      else {
+                          var uluru = {lat:36.8065 , lng:10.1815 };
+                      }
+
+                      var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 4,
+                          center: uluru
+                      });
+                      var marker = new google.maps.Marker({
+                          position: uluru,
+                          map: map
+                      });
+                  }
+              </script>
+              <script async defer
+                      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvrmzTbQB8EwMialF9ZVkzzoRmQFIo-Uc&callback=initMap">
+              </script>
+              </body>
+              </html>
+
+            </section>
+
+    </center>
+        </div>
+
+    </main>
+
+
+{% endblock %}

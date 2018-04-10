@@ -1,0 +1,188 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+    <!--- loading animation -->
+    <div class="loading">
+        <div class="ball"></div>
+        <div class="ball1"></div>
+    </div>
+    <!--- //loading animation -->
+
+    <main class="main">
+
+
+        <!--breadcrumbs-->
+        <div class="wrap">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">            <!--crumbs-->
+            <ul>
+                <li><a href="{{ path('BpAfficher' )}}" title="Bons Plans">Bons Plans</a></li>
+
+            </ul>
+            <ul>
+                <li><a href="{{ path('BpAfficher' )}}" title="Hôtels">Hôtels</a></li>
+
+            </ul>
+            <ul>
+                <li><a href="{{ path('BpAfficher' )}}" title="{{Bp.ville}}">Ville : {{Bp.ville}} </a></li>
+
+            </ul>
+            <ul>
+                <li><a href="{{ path('BpAfficherDetails',{'idbonplan':Bp.idbonplan})}}" title="{{Bp.nom}}"> {{Bp.nom}} </a></li>
+
+            </ul>
+            <!--//crumbs-->
+        </nav>
+        <!--//breadcrumbs-->
+
+        <div class="row">
+            <!--three-fourth content-->
+
+            <!--inner navigation-->
+            <nav class="inner-nav">
+                <ul>
+                    <li><a href="#general_info" title="General information">Consulter</a></li>
+
+
+                </ul>
+                <article class="one-fourth">
+                        <br>
+                        <article>
+                        <table style="width: 250px">
+                            {% for Coms in Coms %}
+                           <tr> <td style=""><h6>{{ Coms.idpersonne }} :</h6> {{ Coms.commentaire }}</td> </tr>
+                            {% endfor %}
+
+                        </table>
+
+                        </article>
+                    <form id="newsletter" action="{{ path('BpAjouterCom', {'idbonplan':Bp.idbonplan}) }}" method="POST">
+                        <fieldset>
+                            <input type="text" id="newsletter_signup" name="commentaire" placeholder="Commenter cet endroit..." style="width:250px" /><input type="submit" id="newsletter_submit" name="newsletter_submit" value="Commenter"  class="gradient-button" />
+
+                        </fieldset>
+                    </form>
+
+                </article>
+
+            </nav>
+            <!--//inner navigation-->
+
+            <!--General information-->
+            <section id="general_info" class="tab-content">
+                <article>
+
+                    <center><h2>{{ Bp.nom|upper }}</h2></center>
+                    <figure><img src="{{ asset('images/Bp/'~Bp.photo)}}" alt="{{ Bp.photo }}" /></figure>
+                    <br>
+                    <center><p><h2><strong>Prix nuitée : {{ Bp.prixnuit }} dt </strong></h2>
+
+                    <a href="{{ path('ajout') }}" title="View all" class="gradient-button" style="width:120px">Réserver</a></center><br>
+                    <table>
+                        <tr>
+                            <th>nom</th>
+                            <td>{{ Bp.nom }}</td>
+
+                        </tr>
+                        <tr>
+                            <th>Adresse</th>
+                            <td>{{ Bp.adresse}}</td>
+                        </tr>
+                        <tr>
+                            <th >Ville</th>
+                            <td>{{ Bp.ville }}</td>
+                        </tr>
+
+
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ Bp.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Note Globale</th>
+                            <td>
+                        {% for P in Note %}
+                            {{ ((P.NoteServiceH+P.NoteRapportH+P.NoteConfortH+P.NotePersonnelH)/4) }}
+                        {% endfor %}
+                            </td>
+                        </tr>
+
+                    </table>
+                                    {% if is_granted ('ROLE_BON_PLANEUR') %}
+
+                    <center>
+                    <a href="{{ path('Bp_delete' , {'idbonplan':Bp.idbonplan}) }}" title="View all" class="gradient-button">Supprimer</a>
+                    <a href="{{ path('Bp_edit' , {'idbonplan':Bp.idbonplan}) }}" title="View all" class="gradient-button">Modifier</a>
+                    </center>
+                    {% endif %}
+                    <br>
+                    {{ socialButtons() }}
+                        <input type="text" id="ville" style="display:none" value="{{ Bp.ville }}">
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <style>
+                            #map {
+                                height: 400px;
+                                width: 100%;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                    <div id="map"></div>
+                    <script>
+                        function initMap() {
+
+                            if ($("#ville").val()=="Nabeul") {
+                                var uluru = {lat:36.4073 , lng:10.6225 };
+                            }
+                            else if ($("#ville").val()=="Tunis") {
+                                var uluru = {lat:36.8529 , lng:10.3217 };
+                            }
+                            else if ($("#ville").val()=="Sousse") {
+                                var uluru = {lat:35.8245 , lng:10.6346 };
+                            }
+                            else if ($("#ville").val()=="Ain Draham") {
+                                var uluru = {lat:36.7736 , lng:8.6848 };
+                            }
+                            else if ($("#ville").val()=="Touzeur") {
+                                var uluru = {lat:33.9185 , lng:8.1229 };
+                            }
+                            else if ($("#ville").val()=="djerba") {
+                                var uluru = {lat:33.8076 , lng:10.8451 };
+                            }
+                            else if ($("#ville").val()=="Ariana") {
+                                var uluru = {lat:36.8665 , lng:10.1647 };
+                            }
+                            else {
+                                var uluru = {lat:36.8065 , lng:10.1815 };
+                            }
+
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 4,
+                                center: uluru
+                            });
+                            var marker = new google.maps.Marker({
+                                position: uluru,
+                                map: map
+                            });
+                        }
+                    </script>
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvrmzTbQB8EwMialF9ZVkzzoRmQFIo-Uc&callback=initMap">
+                    </script>
+                    </body>
+                    </html>
+<br>
+                    <a href="{{ path('Bp_Type',{'ville':Bp.ville})}}" title="retour"><img src="{{ asset('images/Bp/retour.png') }}" alt="retour" style="width: 30px" /></a>
+                </article>
+
+            </section>
+
+
+
+
+        </div>
+    </main>
+
+    <!--//main-->
+{% endblock %}

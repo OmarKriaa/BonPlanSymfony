@@ -1,0 +1,32 @@
+{% extends "layout.html.twig" %}
+{% block body %}
+
+
+    <table border="1">
+        <tr>
+            <th>Ville depart</th>
+            <th>Ville arrivée</th>
+            <th>Nombre de place disponible</th>
+            <th>date de depart </th>
+            <th>heure depart</th>
+        </tr>
+        {% for Transport in Transports %}
+            <tr>
+                <td>{{ Transport.villedepart }}</td>
+                <td>{{ Transport.villearrive }}</td>
+                <td>{{ Transport.nbrplacedispo }}</td>
+                <td>{{ Transport.datedepart|date }}</td>
+                <td>{{ Transport.heuredepart }}</td>
+                <td> <a href="{{ path('Delete_Transport',{'id':Transport.idtransport}) }}">suprrimer</a> </td>
+                <td> <a href="{{ path('Update_Transport',{'id':Transport.idtransport}) }}">mise à jour</a> </td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+
+
+
+
+{% endblock %}
+
